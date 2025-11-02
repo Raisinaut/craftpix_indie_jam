@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://dy700bwdrorh4"]
+
+[ext_resource type="PackedScene" uid="uid://bsov43rgqch03" path="res://entities/characters/moving_character.tscn" id="1_d7owf"]
+[ext_resource type="Texture2D" uid="uid://22bw3seago1g" path="res://assets/free-top-down-roguelike-game-kit-pixel-art-craftpix-net-436971/3 Dungeon Enemies/4 Rat/1.png" id="2_weqkf"]
+[ext_resource type="PackedScene" uid="uid://bgk4cl73uryyv" path="res://entities/characters/player/player_control.tscn" id="3_weqkf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_weqkf"]
+radius = 6.0
+
+[node name="Player" instance=ExtResource("1_d7owf")]
+collision_layer = 2
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_weqkf")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_weqkf")
+
+[node name="PlayerControl" parent="." index="3" node_paths=PackedStringArray("control_target") instance=ExtResource("3_weqkf")]
+control_target = NodePath("..")

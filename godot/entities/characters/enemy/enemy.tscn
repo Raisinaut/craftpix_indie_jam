@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbyn28jgcktxj"]
+
+[ext_resource type="PackedScene" uid="uid://bsov43rgqch03" path="res://entities/characters/moving_character.tscn" id="1_pjw5x"]
+[ext_resource type="PackedScene" uid="uid://dy1u5m1jhstii" path="res://entities/characters/enemy/enemy_control.tscn" id="2_thxve"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_thxve"]
+radius = 4.0
+
+[node name="Enemy" instance=ExtResource("1_pjw5x")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_thxve")
+
+[node name="Sprite2D" parent="." index="1"]
+offset = Vector2(0, -4)
+
+[node name="EnemyControl" parent="." index="3" node_paths=PackedStringArray("control_target") instance=ExtResource("2_thxve")]
+control_target = NodePath("..")
