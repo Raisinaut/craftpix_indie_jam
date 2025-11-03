@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://dy1u5m1jhstii"]
 
-[ext_resource type="Script" uid="uid://bf0y0pn8babce" path="res://entities/characters/enemy/enemy_control.gd" id="1_i62c3"]
+[ext_resource type="Script" uid="uid://bf0y0pn8babce" path="res://entities/characters/enemy/enemy_control.gd" id="1_sjrl1"]
 
-[node name="EnemyControl" type="Node2D"]
-script = ExtResource("1_i62c3")
+[node name="Navigation" type="Node2D"]
+script = ExtResource("1_sjrl1")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 target_desired_distance = 2.0

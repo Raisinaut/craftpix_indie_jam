@@ -1,7 +1,8 @@
 class_name MovingCharacter
 extends CharacterBody2D
 
-const BASE_SPEED = 80
+signal attacked
+signal died
 
 enum STATES {
 	MOVE,
@@ -13,50 +14,95 @@ enum STATES {
 var state := STATES.MOVE : set = set_state
 var move_direction := Vector2.ZERO
 var last_velocity := Vector2.ZERO
+var actual_velocity : Vector2
+var last_position : Vector2
+
+
+@export_range(10, 100, 1.0, "or_greater") var base_speed : float = 80
+@export var attack_rate : float = 1.0
 
 @onready var sprite = $Sprite2D
 @onready var sprite_animator = $SpriteAnimator
+@onready var stats = $Stats
 
 
 func _ready() -> void:
 	state = STATES.MOVE
+	stats.hp_depleted.connect(_on_hp_depleted)
+	stats.hp_lost.connect(_on_hp_lost)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	match(state):
 		STATES.MOVE:
-			walk(delta)
-			var anim_name = "walk_" + get_vector_direction(velocity)
-			if velocity == Vector2.ZERO:
-				anim_name = "idle_" + get_vector_direction(last_velocity)
-			sprite_animator.play(anim_name)
-			update_sprite_flip()
+			move()
+		STATES.ATTACK:
+			play_animation_in_facing_direction("attack", last_velocity)
+	actual_velocity = global_position - last_position
+	last_position = global_position
 
 
-# STATE PROCESS LOGIC ----------------------------------------------------------
-func walk(_delta : float):
+# STATE LOGIC ----------------------------------------------------------
+func move():
 	if move_direction:
-		velocity = BASE_SPEED * move_direction
+		velocity = base_speed * move_direction
 		last_velocity = velocity
 	else:
 		velocity = Vector2.ZERO
 	move_and_slide()
+	
+	var anim_name = "walk_" + get_vector_direction(velocity)
+	if move_direction != Vector2.ZERO:
+		sync_sprite_flip(velocity)
+	else:
+		if velocity == Vector2.ZERO:
+			anim_name = "idle_" + get_vector_direction(last_velocity)
+	sprite_animator.play(anim_name)
+
+func die() -> void:
+	died.emit()
+	play_animation_in_facing_direction("death", last_velocity)
+	await sprite_animator.animation_finished
+	queue_free()
 
 
 # STATE CHANGE LOGIC -----------------------------------------------------------
 func set_state(value : STATES):
+	sprite_animator.speed_scale = 1.0
 	state = value
 	match(state):
-		STATES.MOVE:
-			pass
+		STATES.ATTACK:
+			sprite_animator.speed_scale = attack_rate
+		STATES.DEATH:
+			die()
+		STATES.HURT:
+			play_animation_in_facing_direction("hurt", actual_velocity)
+			await sprite_animator.animation_finished
+			set_state(STATES.MOVE)
+
+
+# SIGNALS ----------------------------------------------------------------------
+func _on_hp_depleted() -> void:
+	set_state(STATES.DEATH)
+
+func _on_hp_lost() -> void:
+	set_state(STATES.HURT)
+
+# ANIMATION METHODS ------------------------------------------------------------
+func attack_keyframe_rached():
+	attacked.emit()
 
 
 # UPDATE FUNCTIONS -------------------------------------------------------------
-func update_sprite_flip() -> void:
-	if velocity.x > 0:
+func sync_sprite_flip(vector : Vector2) -> void:
+	if vector.x > 0:
 		sprite.flip_h = true
-	elif velocity.x < 0:
+	elif vector.x < 0:
 		sprite.flip_h = false
 
+
+func play_animation_in_facing_direction(anim_prefix : String, vector : Vector2):
+	var dir : String = get_vector_direction(vector)
+	sprite_animator.play(anim_prefix + "_" + dir)
 
 ## Returns a string matching the vector's direction. [br]
 ## Combine_horizontal merges "left" and "right" into "side"

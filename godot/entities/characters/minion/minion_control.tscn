@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3km8xyfl0mly"]
+
+[ext_resource type="Script" uid="uid://ckth3ko6m8404" path="res://entities/characters/minion/minion_control.gd" id="1_dmhb2"]
+
+[node name="MinionControl" type="Node2D"]
+script = ExtResource("1_dmhb2")

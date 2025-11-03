@@ -1,8 +1,16 @@
-[gd_scene load_steps=4 format=4 uid="uid://b13vwyaewc6tm"]
+[gd_scene load_steps=7 format=4 uid="uid://b13vwyaewc6tm"]
 
 [ext_resource type="PackedScene" uid="uid://dy700bwdrorh4" path="res://entities/characters/player.tscn" id="2_0wynk"]
 [ext_resource type="TileSet" uid="uid://chyut4bk5txdn" path="res://tilesets/dungeon_terrain.tres" id="2_5krfb"]
-[ext_resource type="PackedScene" uid="uid://cbyn28jgcktxj" path="res://entities/characters/enemy/enemy.tscn" id="3_0wynk"]
+[ext_resource type="Script" uid="uid://cjudhtx3rtd6j" path="res://levels/enemy_path.gd" id="4_ohqux"]
+[ext_resource type="PackedScene" uid="uid://r8k11bdkl7eo" path="res://entities/characters/minion/minion.tscn" id="4_x46hq"]
+[ext_resource type="PackedScene" uid="uid://vcm1xbqwt4l8" path="res://entities/characters/enemy/warrior/enemy_warrior.tscn" id="5_ohqux"]
+
+[sub_resource type="Curve2D" id="Curve2D_x46hq"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 95, 144, 0, 0, 0, 0, 223, 145, 0, 0, 0, 0, 224, 62, 0, 0, 0, 0, 63, 63, 0, 0, 0, 0, 64, 33)
+}
+point_count = 5
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -25,5 +33,14 @@ y_sort_enabled = true
 [node name="Player" parent="Entities" instance=ExtResource("2_0wynk")]
 position = Vector2(83, 44)
 
-[node name="Enemy" parent="Entities" instance=ExtResource("3_0wynk")]
-position = Vector2(226, 107)
+[node name="Minion" parent="Entities" instance=ExtResource("4_x46hq")]
+position = Vector2(173, 73)
+
+[node name="Minion2" parent="Entities" instance=ExtResource("4_x46hq")]
+position = Vector2(275, 123)
+
+[node name="EnemyPath" type="Path2D" parent="Entities"]
+y_sort_enabled = true
+curve = SubResource("Curve2D_x46hq")
+script = ExtResource("4_ohqux")
+enemy_scene = ExtResource("5_ohqux")
