@@ -17,13 +17,14 @@ func _process(_delta: float) -> void:
 			navigation.stop_navigation()
 			control_target.set_state(control_target.STATES.ATTACK)
 		else:
-			control_target.set_state(control_target.STATES.MOVE)
-			navigation.navigate_to_position(enemy.global_position)
+			if not control_target.is_attacking():
+				control_target.set_state(control_target.STATES.MOVE)
+				navigation.navigate_to_position(enemy.global_position)
 	else:
 		control_target.set_state(control_target.STATES.MOVE)
 
 func get_nearest(node_array : Array) -> Node2D:
-	var shortest_distance : float = 9999
+	var shortest_distance : float = INF
 	var nearest : Node2D = null
 	for n in node_array:
 		var d = global_position.distance_squared_to(n.global_position)

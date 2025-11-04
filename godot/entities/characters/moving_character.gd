@@ -50,7 +50,7 @@ func move():
 		velocity = Vector2.ZERO
 	move_and_slide()
 	
-	var anim_name = "walk_" + get_vector_direction(velocity)
+	var anim_name = "walk_" + get_vector_direction(last_velocity)
 	if move_direction != Vector2.ZERO:
 		sync_sprite_flip(velocity)
 	else:
@@ -75,6 +75,7 @@ func set_state(value : STATES):
 		STATES.DEATH:
 			die()
 		STATES.HURT:
+			sprite.flash(0.25)
 			play_animation_in_facing_direction("hurt", actual_velocity)
 			await sprite_animator.animation_finished
 			set_state(STATES.MOVE)
@@ -122,3 +123,7 @@ func get_vector_direction(vector : Vector2, combine_horizontal := true) -> Strin
 		else:
 			direction = "up"
 	return direction
+
+func is_attacking() -> bool:
+	var current_animation : String = sprite_animator.current_animation
+	return current_animation.begins_with("attack")

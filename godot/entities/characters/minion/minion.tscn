@@ -1,25 +1,34 @@
-[gd_scene load_steps=8 format=3 uid="uid://r8k11bdkl7eo"]
+[gd_scene load_steps=10 format=3 uid="uid://r8k11bdkl7eo"]
 
 [ext_resource type="PackedScene" uid="uid://bsov43rgqch03" path="res://entities/characters/moving_character.tscn" id="1_dfef6"]
+[ext_resource type="Shader" uid="uid://n1ttqdvx5d7s" path="res://components/flashing_sprite/flash.gdshader" id="2_77bjd"]
 [ext_resource type="Texture2D" uid="uid://6bmmbp6dmq62" path="res://assets/free-top-down-roguelike-game-kit-pixel-art-craftpix-net-436971/3 Dungeon Enemies/1 Goblin Barbarian/2.png" id="2_h5ji1"]
 [ext_resource type="PackedScene" uid="uid://d3km8xyfl0mly" path="res://entities/characters/minion/minion_control.tscn" id="3_2cecc"]
 [ext_resource type="PackedScene" uid="uid://dy1u5m1jhstii" path="res://entities/characters/enemy/navigation.tscn" id="4_34o0e"]
 [ext_resource type="Script" uid="uid://qo11odgjd7gr" path="res://entities/characters/detection.gd" id="5_iya40"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h5ji1"]
-radius = 5.0
+radius = 4.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u5myw"]
+resource_local_to_scene = true
+shader = ExtResource("2_77bjd")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_amount = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_34o0e"]
-radius = 20.0
+radius = 22.0
 
 [node name="Minion" instance=ExtResource("1_dfef6")]
+collision_layer = 2
+collision_mask = 3
 base_speed = 60.0
-attack_rate = 0.8
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("CircleShape2D_h5ji1")
 
 [node name="Sprite2D" parent="." index="1"]
+material = SubResource("ShaderMaterial_u5myw")
 texture = ExtResource("2_h5ji1")
 
 [node name="MinionControl" parent="." index="3" node_paths=PackedStringArray("control_target") instance=ExtResource("3_2cecc")]
@@ -29,6 +38,8 @@ control_target = NodePath("..")
 control_target = NodePath("../..")
 
 [node name="AttackRadius" type="Area2D" parent="MinionControl" index="1"]
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("5_iya40")
 target_group = "enemy"
 

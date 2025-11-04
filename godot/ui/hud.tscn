@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7gh3a6eb03y0"]
+
+[ext_resource type="Script" uid="uid://dnxg22qyyrynw" path="res://ui/hud.gd" id="1_276te"]
+[ext_resource type="PackedScene" uid="uid://di43x642o2nm3" path="res://ui/resource_display/resource_display.tscn" id="1_rbyyf"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_276te")
+resource_display_scene = ExtResource("1_rbyyf")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="ResourceList" type="VBoxContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 0

@@ -16,12 +16,19 @@ func start_spawn_timer() -> void:
 func _process(delta: float) -> void:
 	for i in movers:
 		var enemy : Enemy = i.get_child(0)
-		i.progress += enemy.base_speed * delta
+		var next_progress = i.progress + enemy.base_speed * delta
+		if i.progress_ratio != 1.0:
+			i.progress = next_progress
+		else:
+			print(enemy.name, " reached path end")
+			movers.erase(i)
+			i.queue_free()
 
 func add_follower() -> void:
 	# create new path
 	var path = PathFollow2D.new()
 	path.rotates = false
+	path.loop = false
 	call_deferred("add_child", path)
 	await path.ready
 	# attach instance to path
@@ -36,3 +43,8 @@ func _on_inst_died(path) -> void:
 func _on_spawn_timer_timeout() -> void:
 	add_follower()
 	start_spawn_timer()
+
+func get_leading_entity():
+	if get_children().size() > 0:
+		return movers[0].get_child(0)
+	return null

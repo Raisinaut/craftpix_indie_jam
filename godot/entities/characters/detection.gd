@@ -5,9 +5,6 @@ var targets : Array[Node2D] = []
 
 
 func _ready() -> void:
-	if not get_tree().has_group(target_group):
-		push_warning(owner.name, " does not have a target_group")
-	
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 

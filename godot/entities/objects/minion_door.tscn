@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://qsptluvvputt"]
+
+[ext_resource type="PackedScene" uid="uid://cjra301m08fu7" path="res://entities/objects/door.tscn" id="1_hilny"]
+[ext_resource type="Script" uid="uid://cw7xhsfrpp4jh" path="res://entities/objects/minion_door.gd" id="1_mqv36"]
+[ext_resource type="PackedScene" uid="uid://r8k11bdkl7eo" path="res://entities/characters/minion/minion.tscn" id="2_om8hq"]
+[ext_resource type="Script" uid="uid://b545io1mgm2pc" path="res://components/interaction_area/interaction_area.gd" id="3_skd6e"]
+[ext_resource type="PackedScene" uid="uid://pfvy78ys0l41" path="res://ui/interact_cost/interact_cost.tscn" id="5_lc7yy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_skd6e"]
+radius = 11.0
+
+[node name="MinionDoor" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_mqv36")
+minion_scene = ExtResource("2_om8hq")
+
+[node name="Door" parent="." instance=ExtResource("1_hilny")]
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("3_skd6e")
+metadata/_custom_type_script = "uid://b545io1mgm2pc"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_skd6e")
+
+[node name="SpawnLocation" type="Node2D" parent="."]
+position = Vector2(0, 12)
+
+[node name="CostDisplay" parent="." instance=ExtResource("5_lc7yy")]
+offset_left = -22.0
+offset_top = -42.0
+offset_right = 21.0
+offset_bottom = -8.0
+action = "MINION"

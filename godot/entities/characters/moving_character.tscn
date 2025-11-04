@@ -1,10 +1,18 @@
-[gd_scene load_steps=23 format=3 uid="uid://bsov43rgqch03"]
+[gd_scene load_steps=26 format=3 uid="uid://bsov43rgqch03"]
 
 [ext_resource type="Script" uid="uid://dx38fb3a80bhu" path="res://entities/characters/moving_character.gd" id="1_dsbbn"]
+[ext_resource type="Shader" uid="uid://n1ttqdvx5d7s" path="res://components/flashing_sprite/flash.gdshader" id="2_jou4o"]
 [ext_resource type="Texture2D" uid="uid://4cqetk3v1sli" path="res://assets/free-top-down-roguelike-game-kit-pixel-art-craftpix-net-436971/1 Characters/2 Warrior/2.png" id="2_kbhq2"]
 [ext_resource type="Script" uid="uid://dlp6me6jd1osa" path="res://components/combat/stats.gd" id="3_62ek5"]
 [ext_resource type="Script" uid="uid://5vsmrsohh6jk" path="res://components/combat/hurtbox.gd" id="3_jou4o"]
 [ext_resource type="PackedScene" uid="uid://dptkd85ey5q80" path="res://components/combat/meter_indicator.tscn" id="4_2ixtm"]
+[ext_resource type="Script" uid="uid://w0l0t0djxrmf" path="res://components/flashing_sprite/flashing_sprite.gd" id="4_6i06w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6i06w"]
+resource_local_to_scene = true
+shader = ExtResource("2_jou4o")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_amount = 0.0
 
 [sub_resource type="Animation" id="Animation_6iaiq"]
 length = 0.001
@@ -345,14 +353,18 @@ _data = {
 }
 
 [node name="MovingCharacter" type="CharacterBody2D"]
+collision_layer = 0
 script = ExtResource("1_dsbbn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_6i06w")
 texture = ExtResource("2_kbhq2")
+offset = Vector2(0, -4)
 hframes = 8
 vframes = 15
+script = ExtResource("4_6i06w")
 
 [node name="SpriteAnimator" type="AnimationPlayer" parent="."]
 libraries = {

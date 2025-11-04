@@ -15,7 +15,7 @@ func _on_stats_hp_changed(_hp) -> void:
 	show()
 	fade(1.0, 0)
 	value = stats.get_hp_percent()
-	visibility_timer.start()
+	#visibility_timer.start()
 
 func _on_visibility_timer_timeout() -> void:
 	fade(0.0, 1.0)

@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://brbf5lml7xnsv"]
+
+[ext_resource type="FontFile" uid="uid://dvvpbm6cwnrjq" path="res://assets/fonts/Pixelify_Sans/static/PixelifySans-Regular.ttf" id="1_raf0b"]
+
+[resource]
+font = ExtResource("1_raf0b")
+font_size = 8
+shadow_color = Color(0.09411765, 0.078431375, 0.14509805, 0.4117647)
+shadow_offset = Vector2(0, 1)

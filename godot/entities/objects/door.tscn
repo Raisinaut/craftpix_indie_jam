@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://cjra301m08fu7"]
+
+[ext_resource type="Script" uid="uid://b4b6hib27pvy4" path="res://entities/objects/door.gd" id="1_pkryy"]
+[ext_resource type="Texture2D" uid="uid://bbos4q4qi8785" path="res://assets/free-top-down-roguelike-game-kit-pixel-art-craftpix-net-436971/2 Dungeon Tileset/3 Animated objects/Door_D.png" id="2_rf22e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ff1gg"]
+atlas = ExtResource("2_rf22e")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agh8b"]
+atlas = ExtResource("2_rf22e")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axnkx"]
+atlas = ExtResource("2_rf22e")
+region = Rect2(40, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5wxe"]
+atlas = ExtResource("2_rf22e")
+region = Rect2(60, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ff1gg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ff1gg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agh8b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axnkx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5wxe")
+}],
+"loop": false,
+"name": &"open_down",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfit7"]
+size = Vector2(17, 4)
+
+[node name="Door" type="StaticBody2D"]
+collision_mask = 0
+script = ExtResource("1_pkryy")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -9.0
+offset_top = -12.0
+offset_right = 8.0
+color = Color(0.09411765, 0.078431375, 0.14509805, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ff1gg")
+animation = &"open_down"
+offset = Vector2(0, -6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -2)
+shape = SubResource("RectangleShape2D_hfit7")
