@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://vcm1xbqwt4l8"]
 
 [ext_resource type="PackedScene" uid="uid://cbyn28jgcktxj" path="res://entities/characters/enemy/enemy.tscn" id="1_vfuvp"]
-[ext_resource type="Shader" uid="uid://n1ttqdvx5d7s" path="res://components/flashing_sprite/flash.gdshader" id="2_pktuf"]
+[ext_resource type="Shader" uid="uid://n1ttqdvx5d7s" path="res://general/components/flashing_sprite/flash.gdshader" id="2_pktuf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4wlbk"]
 resource_local_to_scene = true

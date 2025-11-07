@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TrapData" load_steps=4 format=3 uid="uid://bqdmea5qxlplc"]
+
+[ext_resource type="Texture2D" uid="uid://dym1i6kdlj4iw" path="res://assets/objects/traps/fire_trap/fire_trap_icon.png" id="1_mrmwr"]
+[ext_resource type="Script" uid="uid://bv4r0db7i8vw0" path="res://general/classes/trap_data.gd" id="1_v1lgk"]
+[ext_resource type="PackedScene" uid="uid://lmebpt6opvja" path="res://entities/objects/fire_trap.tscn" id="2_7w0an"]
+
+[resource]
+script = ExtResource("1_v1lgk")
+display_name = "Fireburst"
+icon = ExtResource("1_mrmwr")
+scene = ExtResource("2_7w0an")
+base_cost = 5
+base_interval = 2.0
+base_duration = 1.0
+metadata/_custom_type_script = "uid://bv4r0db7i8vw0"

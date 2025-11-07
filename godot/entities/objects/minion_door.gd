@@ -32,6 +32,7 @@ func use() -> void:
 		GameManager.currency -= use_cost
 		door.open()
 
+
 # SIGNALS ----------------------------------------------------------------------
 func _on_interaction_area_interacted() -> void:
 	use()

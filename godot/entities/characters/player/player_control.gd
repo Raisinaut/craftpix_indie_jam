@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var control_target : MovingCharacter = null
+@export var control_target : PlayerCharacter = null
 
 var input_direction := Vector2.ZERO
 var last_input_direction := Vector2.ZERO

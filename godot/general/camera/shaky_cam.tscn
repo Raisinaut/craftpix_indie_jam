@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbk3p3q8hhi52"]
+
+[ext_resource type="Script" uid="uid://dxbuo7ajudm0o" path="res://general/camera/shaky_cam.gd" id="1_6m2n3"]
+[ext_resource type="Script" uid="uid://f22sdos86naa" path="res://general/camera/screen_shake.gd" id="2_0jiuk"]
+
+[node name="ShakyCam" type="Camera2D"]
+script = ExtResource("1_6m2n3")
+
+[node name="ScreenShake" type="Node" parent="."]
+script = ExtResource("2_0jiuk")
+
+[node name="FrequencyTimer" type="Timer" parent="ScreenShake"]
+
+[node name="DurationTimer" type="Timer" parent="ScreenShake"]

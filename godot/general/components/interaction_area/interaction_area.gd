@@ -26,4 +26,6 @@ func _input(event: InputEvent) -> void:
 		interacted.emit()
 
 func can_interact() -> bool:
-	return not nodes_in_area.is_empty()
+	var has_player = not nodes_in_area.is_empty()
+	var player_not_busy = not GameManager.player_is_busy()
+	return has_player and player_not_busy

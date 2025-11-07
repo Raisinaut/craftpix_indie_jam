@@ -1,17 +1,17 @@
 [gd_scene load_steps=6 format=3 uid="uid://di43x642o2nm3"]
 
-[ext_resource type="Script" uid="uid://bcgq5d6sgkaga" path="res://ui/resource_display/resource_display.gd" id="1_0rcnv"]
-[ext_resource type="Texture2D" uid="uid://dqm6r0kraajyj" path="res://assets/free-top-down-roguelike-game-kit-pixel-art-craftpix-net-436971/4 GUI/1 Interface/TileMap8.png" id="1_ngsjo"]
-[ext_resource type="LabelSettings" uid="uid://brbf5lml7xnsv" path="res://ui/pixel_label_settings.tres" id="2_0rcnv"]
-[ext_resource type="PackedScene" uid="uid://b5vhqs876o4tm" path="res://ui/coin_icon.tscn" id="3_mfgmn"]
+[ext_resource type="Script" uid="uid://bcgq5d6sgkaga" path="res://ui/resource_display/resource_info.gd" id="1_wfyae"]
+[ext_resource type="Texture2D" uid="uid://dqm6r0kraajyj" path="res://assets/free-top-down-roguelike-game-kit-pixel-art-craftpix-net-436971/4 GUI/1 Interface/TileMap8.png" id="2_x33pl"]
+[ext_resource type="LabelSettings" uid="uid://brbf5lml7xnsv" path="res://ui/pixel_label_settings.tres" id="3_p1rxi"]
+[ext_resource type="PackedScene" uid="uid://b5vhqs876o4tm" path="res://ui/coin_icon.tscn" id="4_1k5q3"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_276te"]
 
-[node name="ResourceDisplay" type="PanelContainer"]
+[node name="ResourceInfo" type="PanelContainer"]
 size_flags_horizontal = 8
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_276te")
-script = ExtResource("1_0rcnv")
+script = ExtResource("1_wfyae")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -24,7 +24,7 @@ size_flags_horizontal = 3
 [node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("1_ngsjo")
+texture = ExtResource("2_x33pl")
 region_rect = Rect2(176, 192, 14, 16)
 patch_margin_left = 2
 patch_margin_top = 3
@@ -43,7 +43,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "STASH"
-label_settings = ExtResource("2_0rcnv")
+label_settings = ExtResource("3_p1rxi")
 
 [node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer"]
 custom_minimum_size = Vector2(40, 0)
@@ -53,7 +53,7 @@ size_flags_horizontal = 3
 [node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/PanelContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("1_ngsjo")
+texture = ExtResource("2_x33pl")
 region_rect = Rect2(19, 192, 13, 16)
 patch_margin_left = 2
 patch_margin_top = 5
@@ -76,8 +76,8 @@ alignment = 2
 unique_name_in_owner = true
 layout_mode = 2
 text = "999"
-label_settings = ExtResource("2_0rcnv")
+label_settings = ExtResource("3_p1rxi")
 
-[node name="IconTexture" parent="HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer" instance=ExtResource("3_mfgmn")]
+[node name="IconTexture" parent="HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer" instance=ExtResource("4_1k5q3")]
 unique_name_in_owner = true
 layout_mode = 2

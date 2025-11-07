@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bsov43rgqch03" path="res://entities/characters/moving_character.tscn" id="1_pjw5x"]
 [ext_resource type="Script" uid="uid://0cfqcc2dkffb" path="res://entities/characters/enemy/enemy.gd" id="2_dsbbn"]
-[ext_resource type="Shader" uid="uid://n1ttqdvx5d7s" path="res://components/flashing_sprite/flash.gdshader" id="3_dsbbn"]
+[ext_resource type="Shader" uid="uid://n1ttqdvx5d7s" path="res://general/components/flashing_sprite/flash.gdshader" id="3_dsbbn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_thxve"]
 radius = 4.0

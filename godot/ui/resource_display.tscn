@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://b7gh3a6eb03y0"]
 
-[ext_resource type="Script" uid="uid://dnxg22qyyrynw" path="res://ui/hud.gd" id="1_276te"]
-[ext_resource type="PackedScene" uid="uid://di43x642o2nm3" path="res://ui/resource_display/resource_display.tscn" id="1_rbyyf"]
+[ext_resource type="Script" uid="uid://dnxg22qyyrynw" path="res://ui/resource_display.gd" id="1_276te"]
+[ext_resource type="PackedScene" uid="uid://di43x642o2nm3" path="res://ui/resource_display/resource_info.tscn" id="1_rbyyf"]
 
-[node name="HUD" type="CanvasLayer"]
+[node name="ResourceDisplay" type="CanvasLayer"]
 script = ExtResource("1_276te")
-resource_display_scene = ExtResource("1_rbyyf")
+resource_info_scene = ExtResource("1_rbyyf")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15

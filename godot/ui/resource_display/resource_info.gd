@@ -1,4 +1,4 @@
-class_name ResourceDisplay
+class_name ResourceInfo
 extends PanelContainer
 
 @onready var name_label = %NameLabel

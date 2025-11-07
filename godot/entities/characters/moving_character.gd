@@ -8,7 +8,7 @@ enum STATES {
 	MOVE,
 	ATTACK,
 	HURT,
-	DEATH
+	DEATH,
 }
 
 var state := STATES.MOVE : set = set_state

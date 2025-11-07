@@ -10,9 +10,9 @@ extends PanelContainer
 @onready var original_position = global_position
 
 
-func _process(delta: float) -> void:
-	if not Engine.is_editor_hint():
-		keep_onscreen()
+#func _process(delta: float) -> void:
+	#if not Engine.is_editor_hint():
+		#keep_onscreen() # FIXME: not respecting camera movement
 
 func set_action(value : String):
 	action = value
@@ -23,9 +23,9 @@ func set_cost(value : int):
 	%CostLabel.text = str(cost)
 
 func keep_onscreen() -> void:
-	var viewport_rect = get_viewport_rect()
+	var viewport_rect = get_viewport().get_visible_rect()
 	var viewport_origin = viewport_rect.position
-	var viewport_extent = viewport_origin + viewport_rect.size
-	var max_position = viewport_extent - size
+	var viewport_end = viewport_rect.end
+	var max_position = viewport_end - size
 	global_position.x = clamp(original_position.x, viewport_origin.x, max_position.x)
 	global_position.y = clamp(original_position.y, viewport_origin.y, max_position.y)

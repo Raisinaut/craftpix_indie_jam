@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://r8k11bdkl7eo"]
 
 [ext_resource type="PackedScene" uid="uid://bsov43rgqch03" path="res://entities/characters/moving_character.tscn" id="1_dfef6"]
-[ext_resource type="Shader" uid="uid://n1ttqdvx5d7s" path="res://components/flashing_sprite/flash.gdshader" id="2_77bjd"]
+[ext_resource type="Shader" uid="uid://n1ttqdvx5d7s" path="res://general/components/flashing_sprite/flash.gdshader" id="2_77bjd"]
 [ext_resource type="Texture2D" uid="uid://6bmmbp6dmq62" path="res://assets/free-top-down-roguelike-game-kit-pixel-art-craftpix-net-436971/3 Dungeon Enemies/1 Goblin Barbarian/2.png" id="2_h5ji1"]
 [ext_resource type="PackedScene" uid="uid://d3km8xyfl0mly" path="res://entities/characters/minion/minion_control.tscn" id="3_2cecc"]
 [ext_resource type="PackedScene" uid="uid://dy1u5m1jhstii" path="res://entities/characters/enemy/navigation.tscn" id="4_34o0e"]

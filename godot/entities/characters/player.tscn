@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://dy700bwdrorh4"]
 
 [ext_resource type="PackedScene" uid="uid://bsov43rgqch03" path="res://entities/characters/moving_character.tscn" id="1_d7owf"]
-[ext_resource type="Shader" uid="uid://n1ttqdvx5d7s" path="res://components/flashing_sprite/flash.gdshader" id="2_1pe53"]
+[ext_resource type="Shader" uid="uid://n1ttqdvx5d7s" path="res://general/components/flashing_sprite/flash.gdshader" id="2_1pe53"]
+[ext_resource type="Script" uid="uid://bd5vk3q2y3g41" path="res://entities/characters/player.gd" id="2_b0wws"]
 [ext_resource type="Texture2D" uid="uid://22bw3seago1g" path="res://assets/free-top-down-roguelike-game-kit-pixel-art-craftpix-net-436971/3 Dungeon Enemies/4 Rat/1.png" id="2_weqkf"]
-[ext_resource type="PackedScene" uid="uid://bgk4cl73uryyv" path="res://entities/characters/player/player_control.tscn" id="3_weqkf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_weqkf"]
 radius = 6.0
@@ -16,6 +16,7 @@ shader_parameter/flash_amount = 0.0
 
 [node name="Player" groups=["player"] instance=ExtResource("1_d7owf")]
 collision_layer = 8
+script = ExtResource("2_b0wws")
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("CircleShape2D_weqkf")
@@ -23,6 +24,3 @@ shape = SubResource("CircleShape2D_weqkf")
 [node name="Sprite2D" parent="." index="1"]
 material = SubResource("ShaderMaterial_b0wws")
 texture = ExtResource("2_weqkf")
-
-[node name="PlayerControl" parent="." index="3" node_paths=PackedStringArray("control_target") instance=ExtResource("3_weqkf")]
-control_target = NodePath("..")

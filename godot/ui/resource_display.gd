@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@export var resource_display_scene : PackedScene
+@export var resource_info_scene : PackedScene
 
 @onready var resource_list = %ResourceList
 
@@ -10,7 +10,7 @@ func _ready() -> void:
 
 
 func add_resource_display(resource_name : String) -> void:
-	var inst : ResourceDisplay = resource_display_scene.instantiate()
+	var inst : ResourceInfo = resource_info_scene.instantiate()
 	resource_list.call_deferred("add_child", inst)
 	await inst.ready
 	inst.resource_name = resource_name.to_upper()

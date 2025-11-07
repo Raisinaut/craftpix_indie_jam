@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dptkd85ey5q80"]
 
-[ext_resource type="Script" uid="uid://bs6n2ebc6h4vw" path="res://components/combat/meter_indicator.gd" id="1_f4srp"]
+[ext_resource type="Script" uid="uid://bs6n2ebc6h4vw" path="res://general/components/combat/meter_indicator.gd" id="1_f4srp"]
 [ext_resource type="Texture2D" uid="uid://c7erctyj4v7pa" path="res://assets/ui/bar1.png" id="2_f4srp"]
 [ext_resource type="Texture2D" uid="uid://cxulvkcn24vvd" path="res://assets/ui/bar2.png" id="3_fh4r6"]
 

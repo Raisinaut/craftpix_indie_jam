@@ -16,7 +16,7 @@ frame_2/duration = 0.12
 frame_3/texture = ExtResource("4_gfyr0")
 frame_3/duration = 0.12
 
-[node name="TextureRect" type="TextureRect"]
+[node name="CoinIcon" type="TextureRect"]
 offset_right = 8.0
 offset_bottom = 8.0
 texture = SubResource("AnimatedTexture_oxb6k")
