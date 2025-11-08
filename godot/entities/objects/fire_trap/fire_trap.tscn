@@ -1,8 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://lmebpt6opvja"]
+[gd_scene load_steps=25 format=3 uid="uid://lmebpt6opvja"]
 
-[ext_resource type="Script" uid="uid://xfxe3s8mthy4" path="res://entities/objects/fire_trap.gd" id="1_4vp1b"]
+[ext_resource type="Script" uid="uid://bhmugkt112es3" path="res://entities/objects/fire_trap/fire_trap.gd" id="1_4vp1b"]
 [ext_resource type="Texture2D" uid="uid://cw6cmeriakret" path="res://assets/objects/traps/fire_trap/fire_trap.png" id="1_uigei"]
 [ext_resource type="Texture2D" uid="uid://bg4cyndnyv1vh" path="res://assets/objects/traps/fire_trap/fire_trap_generation.png" id="3_4vp1b"]
+[ext_resource type="Script" uid="uid://45haxxqm2ens" path="res://entities/objects/fire_trap/fireball_pivot.gd" id="3_qmrr5"]
+[ext_resource type="PackedScene" uid="uid://su5uftcnsxde" path="res://entities/projectiles/fireball.tscn" id="4_dda22"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4vp1b"]
 atlas = ExtResource("1_uigei")
@@ -151,6 +153,10 @@ script = ExtResource("1_4vp1b")
 z_index = -1
 sprite_frames = SubResource("SpriteFrames_wxbwv")
 autoplay = "default"
+
+[node name="Fireballs" type="Node2D" parent="."]
+script = ExtResource("3_qmrr5")
+entity_scene = ExtResource("4_dda22")
 
 [node name="Generation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5bmfi")

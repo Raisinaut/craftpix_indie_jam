@@ -24,6 +24,9 @@ shape = SubResource("CircleShape2D_thxve")
 [node name="Sprite2D" parent="." index="1"]
 material = SubResource("ShaderMaterial_kbhq2")
 
+[node name="HurtBox" parent="." index="4"]
+automatic_invincibility = false
+
 [node name="MeterIndicator" parent="." index="5"]
 offset_top = -23.0
 offset_bottom = -18.0

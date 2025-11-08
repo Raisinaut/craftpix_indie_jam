@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://su5uftcnsxde"]
+
+[ext_resource type="Texture2D" uid="uid://cfkv26c28l6iu" path="res://assets/free-top-down-roguelike-game-kit-pixel-art-craftpix-net-436971/1 Characters/Other/Fireball.png" id="1_r03xm"]
+[ext_resource type="Script" uid="uid://dfc5d2tb3beke" path="res://general/components/combat/hitbox.gd" id="2_f7pd7"]
+[ext_resource type="Script" uid="uid://dh6f37om1hmal" path="res://entities/projectiles/fireball.gd" id="2_ytlao"]
+
+[sub_resource type="Gradient" id="Gradient_f7pd7"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f7pd7"]
+radius = 4.0
+
+[node name="Fireball" type="Node2D"]
+script = ExtResource("2_ytlao")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_r03xm")
+
+[node name="Trail" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+show_behind_parent = true
+amount = 6
+texture = ExtResource("1_r03xm")
+lifetime = 0.2
+emission_shape = 4
+emission_points = PackedVector2Array(1, 0, 0, 1, 1, 1, -1, 0, 0, -1, -1, -1)
+emission_colors = PackedColorArray()
+gravity = Vector2(0, 0)
+color_ramp = SubResource("Gradient_f7pd7")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 0
+script = ExtResource("2_f7pd7")
+metadata/_custom_type_script = "uid://dfc5d2tb3beke"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_f7pd7")

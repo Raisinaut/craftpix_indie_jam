@@ -24,6 +24,7 @@ var last_position : Vector2
 @onready var sprite = $Sprite2D
 @onready var sprite_animator = $SpriteAnimator
 @onready var stats = $Stats
+@onready var collision_shape = $CollisionShape2D
 
 
 func _ready() -> void:
@@ -36,7 +37,7 @@ func _process(_delta: float) -> void:
 		STATES.MOVE:
 			move()
 		STATES.ATTACK:
-			play_animation_in_facing_direction("attack", last_velocity)
+			pass
 	actual_velocity = global_position - last_position
 	last_position = global_position
 
@@ -72,6 +73,7 @@ func set_state(value : STATES):
 	match(state):
 		STATES.ATTACK:
 			sprite_animator.speed_scale = attack_rate
+			play_animation_in_facing_direction("attack", last_velocity)
 		STATES.DEATH:
 			die()
 		STATES.HURT:
@@ -91,6 +93,7 @@ func _on_hp_lost() -> void:
 # ANIMATION METHODS ------------------------------------------------------------
 func attack_keyframe_rached():
 	attacked.emit()
+	stats.stamina -= 1
 
 
 # UPDATE FUNCTIONS -------------------------------------------------------------

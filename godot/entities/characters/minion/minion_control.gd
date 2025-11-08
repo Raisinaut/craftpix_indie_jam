@@ -5,15 +5,47 @@ extends Node2D
 
 @onready var navigation = $Navigation
 @onready var attack_radius = $AttackRadius
+@onready var spawn_position = global_position
+
+enum BEHAVIORS {
+	PURSUE,
+	RETREAT
+}
+var behavior = BEHAVIORS.PURSUE : set = set_behavior
 
 
 func _ready() -> void:
+	await control_target.ready
 	control_target.attacked.connect(_on_control_target_attacked)
+	control_target.stats.stamina_depleted.connect(_on_stamina_depleted)
 
+
+# BEHAVIORS --------------------------------------------------------------------
 func _process(_delta: float) -> void:
+	match(behavior):
+		BEHAVIORS.PURSUE:
+			pursue()
+		BEHAVIORS.RETREAT:
+			retreat()
+
+func set_behavior(state) -> void:
+	behavior = state
+	match(behavior):
+		BEHAVIORS.RETREAT:
+			navigation.navigation_finished.connect(_on_navigation_finished)
+			# allow walking through other minions
+			control_target.collision_shape.disabled = true
+		BEHAVIORS.PURSUE:
+			navigation.navigation_finished.disconnect(_on_navigation_finished)
+
+func retreat():
+	navigation.navigate_to_position(spawn_position)
+	control_target.set_state(control_target.STATES.MOVE)
+
+func pursue():
 	var enemy = get_nearest(get_tree().get_nodes_in_group("enemy"))
 	if enemy:
-		if has_attack_target():
+		if target_in_attack_range():
 			navigation.stop_navigation()
 			control_target.set_state(control_target.STATES.ATTACK)
 		else:
@@ -23,6 +55,8 @@ func _process(_delta: float) -> void:
 	else:
 		control_target.set_state(control_target.STATES.MOVE)
 
+
+# UTILITY ----------------------------------------------------------------------
 func get_nearest(node_array : Array) -> Node2D:
 	var shortest_distance : float = INF
 	var nearest : Node2D = null
@@ -33,11 +67,19 @@ func get_nearest(node_array : Array) -> Node2D:
 			nearest = n
 	return nearest
 
-func has_attack_target() -> bool:
+func target_in_attack_range() -> bool:
 	return not attack_radius.targets.is_empty()
 
+
+# SIGNALS ----------------------------------------------------------------------
 func _on_control_target_attacked() -> void:
 	var enemy_to_attack = get_nearest(attack_radius.targets)
 	if enemy_to_attack:
 		var enemy_stats : Stats = enemy_to_attack.find_child("Stats")
 		enemy_stats.take_damage(1)
+
+func _on_stamina_depleted() -> void:
+	behavior = BEHAVIORS.RETREAT
+
+func _on_navigation_finished() -> void:
+	control_target.queue_free()

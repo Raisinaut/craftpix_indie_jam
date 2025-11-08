@@ -10,8 +10,8 @@ signal selected
 @onready var cost_label = %CostLabel
 @onready var disable_overlay = %DisableOverlay
 @onready var overlay_text = %OverlayText
-@onready var flash_color = $FlashColor
-@onready var focus_color = $FocusColor
+@onready var flash_color = %FlashColor
+@onready var focus_color = %FocusColor
 
 var disabled := false : set = set_disabled
 var focused := false : set = set_focused
@@ -42,6 +42,12 @@ func match_data(d = data) -> void:
 
 func update_disabled():
 	disabled = not GameManager.can_afford(data.base_cost)
+	if disabled:
+		focus_changed.emit(focused)
+	#if disabled:
+		#focus_mode = Control.FOCUS_NONE
+	#else:
+		#focus_mode = Control.FOCUS_ALL
 
 
 # EFFECTS ----------------------------------------------------------------------
@@ -55,7 +61,7 @@ func flash():
 
 # SIGNALS ----------------------------------------------------------------------
 func _on_focus_entered() -> void:
-	overlay_text.show()
+	#overlay_text.show()
 	focused = true
 
 func _on_focus_exited() -> void:

@@ -21,6 +21,6 @@ script = ExtResource("2_b0wws")
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("CircleShape2D_weqkf")
 
-[node name="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" parent="." index="2"]
 material = SubResource("ShaderMaterial_b0wws")
 texture = ExtResource("2_weqkf")

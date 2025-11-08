@@ -27,7 +27,7 @@ base_speed = 60.0
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("CircleShape2D_h5ji1")
 
-[node name="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" parent="." index="2"]
 material = SubResource("ShaderMaterial_u5myw")
 texture = ExtResource("2_h5ji1")
 
@@ -45,3 +45,10 @@ target_group = "enemy"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MinionControl/AttackRadius" index="0"]
 shape = SubResource("CircleShape2D_34o0e")
+
+[node name="Stats" parent="." index="5"]
+unlimited_stamina = false
+
+[node name="MeterIndicator" parent="." index="7"]
+tint_progress = Color(0.3882353, 0.78039217, 0.3019608, 1)
+tracking_stat = "stamina"

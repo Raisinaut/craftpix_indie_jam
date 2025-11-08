@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqwtq0th0xf8r"]
+
+[ext_resource type="Script" uid="uid://cimm2mlx6m4ss" path="res://ui/trap_selection/trap_selection.gd" id="1_e5qtg"]
+[ext_resource type="PackedScene" uid="uid://dlcos80wfknbo" path="res://ui/trap_selection/trap_button/trap_button.tscn" id="2_e5qtg"]
+[ext_resource type="PackedScene" uid="uid://321rni58g7ys" path="res://general/selection_indicator/SelectionIndicator.tscn" id="3_4fif4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e5qtg"]
+
+[node name="TrapSelection" type="CanvasLayer"]
+script = ExtResource("1_e5qtg")
+button_scene = ExtResource("2_e5qtg")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxEmpty_e5qtg")
+
+[node name="ButtonContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="SelectionIndicator" parent="." instance=ExtResource("3_4fif4")]

@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://yjjkhh7sb3m"]
+
+[ext_resource type="Script" uid="uid://k223i0h5n0ba" path="res://general/debug/debug_hud.gd" id="1_do8ac"]
+[ext_resource type="LabelSettings" uid="uid://brbf5lml7xnsv" path="res://ui/pixel_label_settings.tres" id="2_eo4ue"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eo4ue"]
+bg_color = Color(1, 1, 1, 0.14500001)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eo4ue"]
+content_margin_left = 6.0
+content_margin_top = 4.0
+content_margin_right = 6.0
+content_margin_bottom = 4.0
+
+[node name="DebugHud" type="CanvasLayer"]
+script = ExtResource("1_do8ac")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+z_index = 100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Debug Menu"
+label_settings = ExtResource("2_eo4ue")
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_eo4ue")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="GameSpeedLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Speed x2"
+label_settings = ExtResource("2_eo4ue")
+
+[node name="GameSpeedButton" type="CheckButton" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_eo4ue")

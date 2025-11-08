@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://321rni58g7ys"]
+[gd_scene load_steps=7 format=3 uid="uid://321rni58g7ys"]
 
 [ext_resource type="Script" uid="uid://hdi1qplbgdlk" path="res://general/selection_indicator/SelectionIndicator.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://llno06h552bb" path="res://assets/ui/selection_corner/selection_corner.png" id="2_pctgi"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "PULSE"
@@ -13,7 +14,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 1.5, 0, -1, 0, 1, 1.5, 0, 0, 0, -1, 0.25, 0),
 "times": PackedFloat32Array(0, 0.5, 1)
 }
 tracks/1/type = "bezier"
@@ -24,7 +25,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 1.5, 0, -1, -0.25, 1, 1.5, 0, 0, 0, -1, 0.25, 0),
 "times": PackedFloat32Array(0, 0.5, 1)
 }
 tracks/2/type = "bezier"
@@ -35,7 +36,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 1.5, 0, -1, -0.25, 1, 1.5, 0, 0, 0, -1, 0.25, 0),
 "times": PackedFloat32Array(0, 0.5, 1)
 }
 tracks/3/type = "bezier"
@@ -46,7 +47,7 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 1.5, 0, -1, -0.25, 1, 1.5, 0, 0, 0, -1, 0.25, 0),
 "times": PackedFloat32Array(0, 0.5, 1)
 }
 tracks/4/type = "bezier"
@@ -57,7 +58,7 @@ tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 1.5, 0, -1, -0.25, 1, 1.5, 0, 0, 0, -1, 0.25, 0),
 "times": PackedFloat32Array(0, 0.5, 1)
 }
 tracks/5/type = "bezier"
@@ -68,7 +69,7 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 1.5, 0, -1, -0.25, 1, 1.5, 0, 0, 0, -1, 0.25, 0),
 "times": PackedFloat32Array(0, 0.5, 1)
 }
 tracks/6/type = "bezier"
@@ -79,7 +80,7 @@ tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 1.5, 0, -1, -0.25, 1, 1.5, 0, 0, 0, -1, 0.25, 0),
 "times": PackedFloat32Array(0, 0.5, 1)
 }
 tracks/7/type = "bezier"
@@ -90,7 +91,7 @@ tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 1.5, 0, -1, -0.25, 1, 1.5, 0, 0, 0, -1, 0.25, 0),
 "times": PackedFloat32Array(0, 0.5, 1)
 }
 
@@ -185,29 +186,49 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0)
 }
 
+[sub_resource type="Animation" id="Animation_fg6xj"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TopLeft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x22q0"]
 _data = {
 &"PULSE": SubResource("1"),
-&"RESET": SubResource("2")
+&"RESET": SubResource("2"),
+&"new_animation": SubResource("Animation_fg6xj")
 }
 
 [node name="SelectionIndicator" type="Node2D"]
 script = ExtResource("2")
-pulse_amount = null
 
 [node name="TopLeft" type="Sprite2D" parent="."]
+texture = ExtResource("2_pctgi")
 
 [node name="TopRight" type="Sprite2D" parent="."]
 rotation = 1.5708
+texture = ExtResource("2_pctgi")
 
 [node name="BottomRight" type="Sprite2D" parent="."]
 rotation = 3.14159
+texture = ExtResource("2_pctgi")
 
 [node name="BottomLeft" type="Sprite2D" parent="."]
 rotation = 4.71239
+texture = ExtResource("2_pctgi")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_x22q0")
 }
 autoplay = "PULSE"
+speed_scale = 2.0

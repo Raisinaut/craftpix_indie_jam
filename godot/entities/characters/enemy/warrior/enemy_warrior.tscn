@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://vcm1xbqwt4l8"]
+[gd_scene load_steps=5 format=3 uid="uid://vcm1xbqwt4l8"]
 
 [ext_resource type="PackedScene" uid="uid://cbyn28jgcktxj" path="res://entities/characters/enemy/enemy.tscn" id="1_vfuvp"]
 [ext_resource type="Shader" uid="uid://n1ttqdvx5d7s" path="res://general/components/flashing_sprite/flash.gdshader" id="2_pktuf"]
@@ -9,10 +9,17 @@ shader = ExtResource("2_pktuf")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_amount = 0.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pktuf"]
+radius = 6.0
+
 [node name="Warrior" instance=ExtResource("1_vfuvp")]
 
-[node name="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" parent="." index="2"]
 material = SubResource("ShaderMaterial_4wlbk")
 
-[node name="Stats" parent="." index="3"]
+[node name="Stats" parent="." index="4"]
 max_hp = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_pktuf")

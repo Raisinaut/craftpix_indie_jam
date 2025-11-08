@@ -4,12 +4,14 @@ var data_folder := "res://resources/traps/"
 var all_data : Array = []
 
 @onready var button_container = %ButtonContainer
+@onready var selection_indicator = $SelectionIndicator
 
 @export var button_scene : PackedScene
 @export var map : InteractableMap
 
 
 func _ready() -> void:
+	selection_indicator.hide()
 	populate_data_list(all_data)
 	for d in all_data:
 		add_button(d)
@@ -25,22 +27,27 @@ func add_button(data : TrapData):
 
 # SIGNALS ----------------------------------------------------------------------
 func _on_button_selected(btn : TrapButton) -> void:
-	#print("selected:  ", btn.data.display_name)
 	map.selected_scene = find_data_idx(btn)
 	if map.can_place():
-		GameManager.currency -= btn.data.base_cost
-		map.place_trap()
+		map.place_trap(btn.data.base_cost)
 
 func _on_button_focus_changed(is_focused : bool, btn : TrapButton) -> void:
 	if is_focused:
-		map.selected_scene = find_data_idx(btn)
+		selection_indicator.show()
+		selection_indicator.update_corners(btn)
+		if GameManager.can_afford(btn.data.base_cost):
+			map.selected_scene = find_data_idx(btn)
+		else:
+			map.selected_scene = -1
 	else:
+		selection_indicator.hide()
 		map.selected_scene = -1
 
+
+# DATA -------------------------------------------------------------------------
 func find_data_idx(btn : TrapButton) -> int:
 	return all_data.find(btn.data)
 
-# DATA GATHERING ---------------------------------------------------------------
 func populate_data_list(data_list : Array):
 	# clear previous list contents
 	data_list.clear()

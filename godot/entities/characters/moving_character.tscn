@@ -1,6 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://bsov43rgqch03"]
+[gd_scene load_steps=27 format=3 uid="uid://bsov43rgqch03"]
 
 [ext_resource type="Script" uid="uid://dx38fb3a80bhu" path="res://entities/characters/moving_character.gd" id="1_dsbbn"]
+[ext_resource type="Texture2D" uid="uid://cs8a8s2x8phta" path="res://assets/free-top-down-roguelike-game-kit-pixel-art-craftpix-net-436971/1 Characters/Other/Shadow.png" id="2_3sq6u"]
 [ext_resource type="Shader" uid="uid://n1ttqdvx5d7s" path="res://general/components/flashing_sprite/flash.gdshader" id="2_jou4o"]
 [ext_resource type="Texture2D" uid="uid://4cqetk3v1sli" path="res://assets/free-top-down-roguelike-game-kit-pixel-art-craftpix-net-436971/1 Characters/2 Warrior/2.png" id="2_kbhq2"]
 [ext_resource type="Script" uid="uid://dlp6me6jd1osa" path="res://general/components/combat/stats.gd" id="3_62ek5"]
@@ -357,6 +358,10 @@ collision_layer = 0
 script = ExtResource("1_dsbbn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.5)
+texture = ExtResource("2_3sq6u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_6i06w")

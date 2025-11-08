@@ -30,6 +30,7 @@ func use() -> void:
 		return
 	if GameManager.can_afford(use_cost):
 		GameManager.currency -= use_cost
+		print("door used")
 		door.open()
 
 
@@ -39,4 +40,5 @@ func _on_interaction_area_interacted() -> void:
 
 func _on_door_fully_opened() -> void:
 	spawn()
+	print("spawned enemy")
 	door.close()

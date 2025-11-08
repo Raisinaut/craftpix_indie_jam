@@ -1,5 +1,7 @@
 extends Path2D
 
+signal path_end_reached
+
 @export var enemy_scene : PackedScene
 
 @export var spawn_interval : float = 2.0
@@ -20,7 +22,7 @@ func _process(delta: float) -> void:
 		if i.progress_ratio != 1.0:
 			i.progress = next_progress
 		else:
-			print(enemy.name, " reached path end")
+			path_end_reached.emit()
 			movers.erase(i)
 			i.queue_free()
 
@@ -39,6 +41,7 @@ func add_follower() -> void:
 
 func _on_inst_died(path) -> void:
 	movers.erase(path)
+	GameManager.currency += 1 # FIXME May want to relocate this?
 
 func _on_spawn_timer_timeout() -> void:
 	add_follower()
