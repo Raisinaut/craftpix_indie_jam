@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://b545io1mgm2pc" path="res://general/components/interaction_area/interaction_area.gd" id="3_skd6e"]
 [ext_resource type="PackedScene" uid="uid://pfvy78ys0l41" path="res://ui/interact_cost/interact_cost.tscn" id="5_lc7yy"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_skd6e"]
-radius = 11.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lc7yy"]
+size = Vector2(17, 4)
 
 [node name="MinionDoor" type="Node2D"]
 y_sort_enabled = true
@@ -23,14 +23,17 @@ script = ExtResource("3_skd6e")
 metadata/_custom_type_script = "uid://b545io1mgm2pc"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-shape = SubResource("CircleShape2D_skd6e")
+position = Vector2(-0.5, 2)
+shape = SubResource("RectangleShape2D_lc7yy")
 
 [node name="SpawnLocation" type="Node2D" parent="."]
 position = Vector2(0, 12)
 
-[node name="CostDisplay" parent="." instance=ExtResource("5_lc7yy")]
-offset_left = -22.0
+[node name="CostDisplay" parent="." node_paths=PackedStringArray("linked_area") instance=ExtResource("5_lc7yy")]
+offset_left = 0.0
 offset_top = -42.0
-offset_right = 21.0
+offset_right = 0.0
 offset_bottom = -8.0
 action = "MINION"
+cost = 10
+linked_area = NodePath("../InteractionArea")

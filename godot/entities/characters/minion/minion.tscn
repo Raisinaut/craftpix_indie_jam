@@ -47,6 +47,7 @@ target_group = "enemy"
 shape = SubResource("CircleShape2D_34o0e")
 
 [node name="Stats" parent="." index="5"]
+max_stamina = 20
 unlimited_stamina = false
 
 [node name="MeterIndicator" parent="." index="7"]

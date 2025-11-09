@@ -1,10 +1,12 @@
-[gd_scene load_steps=25 format=3 uid="uid://lmebpt6opvja"]
+[gd_scene load_steps=28 format=3 uid="uid://lmebpt6opvja"]
 
 [ext_resource type="Script" uid="uid://bhmugkt112es3" path="res://entities/objects/fire_trap/fire_trap.gd" id="1_4vp1b"]
 [ext_resource type="Texture2D" uid="uid://cw6cmeriakret" path="res://assets/objects/traps/fire_trap/fire_trap.png" id="1_uigei"]
 [ext_resource type="Texture2D" uid="uid://bg4cyndnyv1vh" path="res://assets/objects/traps/fire_trap/fire_trap_generation.png" id="3_4vp1b"]
 [ext_resource type="Script" uid="uid://45haxxqm2ens" path="res://entities/objects/fire_trap/fireball_pivot.gd" id="3_qmrr5"]
 [ext_resource type="PackedScene" uid="uid://su5uftcnsxde" path="res://entities/projectiles/fireball.tscn" id="4_dda22"]
+[ext_resource type="Script" uid="uid://b545io1mgm2pc" path="res://general/components/interaction_area/interaction_area.gd" id="6_suj3x"]
+[ext_resource type="PackedScene" uid="uid://pfvy78ys0l41" path="res://ui/interact_cost/interact_cost.tscn" id="7_x8jmv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4vp1b"]
 atlas = ExtResource("1_uigei")
@@ -146,6 +148,9 @@ animations = [{
 "speed": 14.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_x8jmv"]
+radius = 1.0
+
 [node name="FireTrap" type="Node2D"]
 script = ExtResource("1_4vp1b")
 
@@ -156,8 +161,27 @@ autoplay = "default"
 
 [node name="Fireballs" type="Node2D" parent="."]
 script = ExtResource("3_qmrr5")
+entity_count = 3
 entity_scene = ExtResource("4_dda22")
 
 [node name="Generation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5bmfi")
 autoplay = "default"
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("6_suj3x")
+metadata/_custom_type_script = "uid://b545io1mgm2pc"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_x8jmv")
+
+[node name="InteractCost" parent="." node_paths=PackedStringArray("linked_area") instance=ExtResource("7_x8jmv")]
+offset_left = 0.0
+offset_top = -29.0
+offset_right = 0.0
+offset_bottom = -6.0
+size_flags_vertical = 1
+action = "FLIP"
+linked_area = NodePath("../InteractionArea")

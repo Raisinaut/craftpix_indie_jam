@@ -9,7 +9,7 @@ offset_right = 22.0
 offset_bottom = 5.0
 max_value = 1.0
 step = 0.01
-value = 1.0
+value = 0.5
 nine_patch_stretch = true
 stretch_margin_left = 2
 stretch_margin_top = 2
@@ -22,3 +22,10 @@ script = ExtResource("1_f4srp")
 
 [node name="VisiblityTimer" type="Timer" parent="."]
 wait_time = 3.0
+
+[node name="ProgressCap" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 0
+offset_right = 1.0
+offset_bottom = 5.0
+color = Color(0.09411765, 0.078431375, 0.14509805, 1)

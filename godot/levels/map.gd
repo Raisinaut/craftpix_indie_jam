@@ -11,6 +11,12 @@ extends Node2D
 var highlight_idx = Vector2i.ZERO
 var selected_scene = -1
 
+enum MODES {
+	PLACE,
+	REMOVE
+}
+var mode = MODES.PLACE
+
 
 func _ready() -> void:
 	# Change ground z-index to allow for more layered spritework
@@ -30,24 +36,39 @@ func update_hover():
 		traps_hover.set_cell(highlight_idx, 0, Vector2i(0, 0), tile_idx)
 
 func update_highlight():
-	highlight_box.visible = is_highlighting()
+	match mode:
+		MODES.PLACE:
+			highlight_box.visible = is_highlighting()
+			highlight_box.play("place")
+			highlight_box.modulate = Color("FFFFFF")
+			if not can_place():
+				highlight_box.modulate = Color("f6757a")
+		MODES.REMOVE:
+			highlight_box.visible = true
+			highlight_box.play("remove")
+			highlight_box.modulate = Color("63c74d")
+			if not can_remove():
+				highlight_box.modulate = Color("f6757a")
 	if highlight_box.visible:
-		var highlight_pos = traps_hover.map_to_local(highlight_idx)
-		var highlight_color = Color.WHITE
+		var highlight_pos = traps.map_to_local(highlight_idx)
 		highlight_box.global_position = highlight_pos
-		if not can_place():
-			highlight_color = Color("e43b44")
-			highlight_box.play("bad")
-		else:
-			highlight_box.play("good")
-		highlight_box.modulate = highlight_color
 
-func place_trap(cost : int):
+func place_trap(cost : int) -> void:
 	var tile_idx = selected_scene + 1
 	if is_idx_valid(tile_idx):
 		GameManager.currency -= cost
 		traps.set_cell(highlight_idx, 0, Vector2i(0, 0), tile_idx)
 
+func remove_trap(cost : int) -> void:
+	traps.erase_cell(highlight_idx)
+	GameManager.currency += int(cost * 0.5)
+
+func get_highlighted_scene() -> PackedScene:
+	var tile_idx = traps.get_cell_alternative_tile(highlight_idx)
+	var trap_tiles : TileSet = traps.tile_set
+	var scene_collection : TileSetScenesCollectionSource = trap_tiles.get_source(0)
+	var trap = scene_collection.get_scene_tile_scene(tile_idx)
+	return trap
 
 # CHECKS -----------------------------------------------------------------------
 func is_cell_valid(coords : Vector2i) -> bool:
@@ -61,8 +82,8 @@ func is_cell_valid(coords : Vector2i) -> bool:
 	return usable_coords.has(coords)
 
 func is_idx_valid(idx : int) -> bool:
-	var hover_tile_set : TileSet = traps.tile_set
-	var scene_collection : TileSetScenesCollectionSource = hover_tile_set.get_source(0)
+	var hover_tiles : TileSet = traps.tile_set
+	var scene_collection: TileSetScenesCollectionSource = hover_tiles.get_source(0)
 	return scene_collection.has_scene_tile_id(idx)
 
 func is_highlighting() -> bool:
@@ -70,3 +91,6 @@ func is_highlighting() -> bool:
 
 func can_place() -> bool:
 	return is_cell_valid(highlight_idx)
+
+func can_remove() -> bool:
+	return traps.get_used_cells().has(highlight_idx)

@@ -33,8 +33,9 @@ func set_behavior(state) -> void:
 	match(behavior):
 		BEHAVIORS.RETREAT:
 			navigation.navigation_finished.connect(_on_navigation_finished)
-			# allow walking through other minions
-			control_target.collision_shape.disabled = true
+			# allow walking through other minions (layer 1)
+			# keep world collisions (layer 0)
+			control_target.collision_mask = int(pow(2, 1-1))
 		BEHAVIORS.PURSUE:
 			navigation.navigation_finished.disconnect(_on_navigation_finished)
 

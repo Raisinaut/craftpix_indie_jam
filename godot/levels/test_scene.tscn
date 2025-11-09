@@ -13,10 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://qsptluvvputt" path="res://entities/objects/minion_door.tscn" id="6_a47p7"]
 [ext_resource type="PackedScene" uid="uid://dbk3p3q8hhi52" path="res://general/camera/shaky_cam.tscn" id="10_vehgu"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_200ie"]
-atlas = ExtResource("5_1b2a2")
-region = Rect2(80, 0, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_1b2a2"]
 atlas = ExtResource("5_1b2a2")
 region = Rect2(0, 0, 16, 16)
@@ -37,16 +33,12 @@ region = Rect2(48, 0, 16, 16)
 atlas = ExtResource("5_1b2a2")
 region = Rect2(64, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_200ie"]
+atlas = ExtResource("5_1b2a2")
+region = Rect2(80, 0, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_vehgu"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_200ie")
-}],
-"loop": true,
-"name": &"bad",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1b2a2")
@@ -64,8 +56,16 @@ animations = [{
 "texture": SubResource("AtlasTexture_wn8u6")
 }],
 "loop": true,
-"name": &"good",
+"name": &"place",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_200ie")
+}],
+"loop": true,
+"name": &"remove",
+"speed": 5.0
 }]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_f3iph"]
@@ -101,8 +101,8 @@ tile_set = ExtResource("2_5krfb")
 
 [node name="HighlightBox" type="AnimatedSprite2D" parent="Map/Ground"]
 sprite_frames = SubResource("SpriteFrames_vehgu")
-animation = &"good"
-autoplay = "good"
+animation = &"remove"
+autoplay = "place"
 
 [node name="EnemyTrack" type="TileMapLayer" parent="Map"]
 z_index = -10
@@ -139,11 +139,11 @@ curve = SubResource("Curve2D_x46hq")
 script = ExtResource("4_ohqux")
 enemy_scene = ExtResource("5_ohqux")
 
-[node name="MinionDoor" parent="Entities" instance=ExtResource("6_a47p7")]
-position = Vector2(72, -64)
-
 [node name="MinionDoor2" parent="Entities" instance=ExtResource("6_a47p7")]
 position = Vector2(216, 32)
+
+[node name="MinionDoor" parent="Entities" instance=ExtResource("6_a47p7")]
+position = Vector2(56, -64)
 
 [node name="ShakyCam" parent="." node_paths=PackedStringArray("target") instance=ExtResource("10_vehgu")]
 target = NodePath("../Entities/Player")
