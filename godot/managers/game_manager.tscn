@@ -1,11 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwqkxauigrqe1"]
+[gd_scene load_steps=7 format=3 uid="uid://bwqkxauigrqe1"]
 
 [ext_resource type="Script" uid="uid://doc580cqei5d4" path="res://managers/game_manager.gd" id="1_atyjh"]
 [ext_resource type="Texture2D" uid="uid://bhirtkl2ljfuq" path="res://assets/objects/coin1.png" id="2_ou16m"]
 [ext_resource type="Texture2D" uid="uid://dwxwa4q5qdlok" path="res://assets/objects/coin2.png" id="3_yawit"]
 [ext_resource type="Texture2D" uid="uid://q0txmws1rxrh" path="res://assets/objects/coin3.png" id="4_b25so"]
 [ext_resource type="Texture2D" uid="uid://dva7grbf1rxmu" path="res://assets/objects/coin4.png" id="5_bf4bw"]
+[ext_resource type="Script" uid="uid://vxb4ej37bcac" path="res://managers/effect_generator.gd" id="6_yawit"]
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_atyjh")
 currency_icon_frames = Array[Texture]([ExtResource("2_ou16m"), ExtResource("3_yawit"), ExtResource("4_b25so"), ExtResource("5_bf4bw")])
+
+[node name="EffectGenerator" type="Node" parent="."]
+script = ExtResource("6_yawit")

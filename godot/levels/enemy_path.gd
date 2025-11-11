@@ -8,6 +8,11 @@ signal path_end_reached
 
 var movers : Array[PathFollow2D] = []
 
+var max_interval = 4
+var min_interval = 0.5
+
+var interval_reduction_rate : float = 0.05
+
 
 func _ready() -> void:
 	start_spawn_timer()
@@ -25,6 +30,9 @@ func _process(delta: float) -> void:
 			path_end_reached.emit()
 			movers.erase(i)
 			i.queue_free()
+	spawn_interval -= interval_reduction_rate * delta
+	spawn_interval = clamp(spawn_interval, min_interval, max_interval)
+	print(spawn_interval)
 
 func add_follower() -> void:
 	# create new path

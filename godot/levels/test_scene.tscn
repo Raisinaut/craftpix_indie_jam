@@ -1,17 +1,26 @@
-[gd_scene load_steps=23 format=4 uid="uid://b13vwyaewc6tm"]
+[gd_scene load_steps=27 format=4 uid="uid://b13vwyaewc6tm"]
 
 [ext_resource type="PackedScene" uid="uid://yjjkhh7sb3m" path="res://general/debug/debug_hud.tscn" id="1_6gk0q"]
 [ext_resource type="PackedScene" uid="uid://b7gh3a6eb03y0" path="res://ui/resource_display/resource_display.tscn" id="1_a47p7"]
+[ext_resource type="FontFile" uid="uid://dvvpbm6cwnrjq" path="res://assets/fonts/Pixelify_Sans/static/PixelifySans-Regular.ttf" id="2_0o44c"]
 [ext_resource type="PackedScene" uid="uid://dy700bwdrorh4" path="res://entities/characters/player.tscn" id="2_0wynk"]
 [ext_resource type="TileSet" uid="uid://chyut4bk5txdn" path="res://tilesets/dungeon_terrain.tres" id="2_5krfb"]
 [ext_resource type="PackedScene" uid="uid://bqwtq0th0xf8r" path="res://ui/trap_selection/trap_selection.tscn" id="2_f3iph"]
 [ext_resource type="Script" uid="uid://ixlv8o45pmwu" path="res://levels/map.gd" id="2_vrunm"]
 [ext_resource type="PackedScene" uid="uid://lmebpt6opvja" path="res://entities/objects/fire_trap/fire_trap.tscn" id="3_vrunm"]
+[ext_resource type="Script" uid="uid://bmmeaqfs15cos" path="res://levels/intro_prompt.gd" id="3_wn8u6"]
 [ext_resource type="Script" uid="uid://cjudhtx3rtd6j" path="res://levels/enemy_path.gd" id="4_ohqux"]
 [ext_resource type="Texture2D" uid="uid://bo33kmayvd6bc" path="res://assets/ui/highlight/tile_highlight_b.png" id="5_1b2a2"]
 [ext_resource type="PackedScene" uid="uid://vcm1xbqwt4l8" path="res://entities/characters/enemy/warrior/enemy_warrior.tscn" id="5_ohqux"]
 [ext_resource type="PackedScene" uid="uid://qsptluvvputt" path="res://entities/objects/minion_door.tscn" id="6_a47p7"]
 [ext_resource type="PackedScene" uid="uid://dbk3p3q8hhi52" path="res://general/camera/shaky_cam.tscn" id="10_vehgu"]
+[ext_resource type="PackedScene" uid="uid://b3bvpi5igruyf" path="res://entities/objects/treasure/treasure.tscn" id="13_cnwds"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wn8u6"]
+font = ExtResource("2_0o44c")
+outline_color = Color(0.09411765, 0.078431375, 0.14509805, 1)
+shadow_color = Color(0.09411765, 0.078431375, 0.14509805, 0.4117647)
+shadow_offset = Vector2(0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1b2a2"]
 atlas = ExtResource("5_1b2a2")
@@ -76,7 +85,7 @@ sources/0 = SubResource("TileSetScenesCollectionSource_f3iph")
 
 [sub_resource type="Curve2D" id="Curve2D_x46hq"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 104, 152, 0, 0, 0, 0, 216, 152, 0, 0, 0, 0, 216, 56, 0, 0, 0, 0, 72, 56, 0, 0, 0, 0, 72, -40, 0, 0, 0, 0, 264, -40)
+"points": PackedVector2Array(0, 0, 0, 0, 104, 152, 0, 0, 0, 0, 216, 152, 0, 0, 0, 0, 216, 56, 0, 0, 0, 0, 72, 56, 0, 0, 0, 0, 72, -40, 0, 0, 0, 0, 255, -40)
 }
 point_count = 6
 
@@ -85,10 +94,23 @@ y_sort_enabled = true
 
 [node name="ResourceDisplay" parent="." instance=ExtResource("1_a47p7")]
 
+[node name="Label" type="Label" parent="ResourceDisplay"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Protect Your Treasure!"
+label_settings = SubResource("LabelSettings_wn8u6")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_wn8u6")
+
 [node name="TrapSelection" parent="." node_paths=PackedStringArray("map") instance=ExtResource("2_f3iph")]
 map = NodePath("../Map")
 
 [node name="DebugHud" parent="." instance=ExtResource("1_6gk0q")]
+visible = false
 
 [node name="Map" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -138,6 +160,7 @@ y_sort_enabled = true
 curve = SubResource("Curve2D_x46hq")
 script = ExtResource("4_ohqux")
 enemy_scene = ExtResource("5_ohqux")
+spawn_interval = 6.0
 
 [node name="MinionDoor2" parent="Entities" instance=ExtResource("6_a47p7")]
 position = Vector2(216, 32)
@@ -147,3 +170,6 @@ position = Vector2(56, -64)
 
 [node name="ShakyCam" parent="." node_paths=PackedStringArray("target") instance=ExtResource("10_vehgu")]
 target = NodePath("../Entities/Player")
+
+[node name="Treasure" parent="." instance=ExtResource("13_cnwds")]
+position = Vector2(271, -40)
