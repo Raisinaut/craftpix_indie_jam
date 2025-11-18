@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2kx3cwxusfny"]
+
+[ext_resource type="Script" uid="uid://bnkygjicc4o7x" path="res://managers/entity_manager.gd" id="1_vjmet"]
+[ext_resource type="PackedScene" uid="uid://dcmfqyxtr4oty" path="res://entities/objects/coin/coin.tscn" id="2_7cql6"]
+
+[node name="EntityManager" type="Node"]
+script = ExtResource("1_vjmet")
+coin_scene = ExtResource("2_7cql6")

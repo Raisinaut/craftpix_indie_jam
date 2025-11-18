@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://yjjkhh7sb3m"]
 
-[ext_resource type="Script" uid="uid://k223i0h5n0ba" path="res://general/debug/debug_hud.gd" id="1_do8ac"]
+[ext_resource type="Script" uid="uid://k223i0h5n0ba" path="res://general/debug/debug_menu.gd" id="1_do8ac"]
 [ext_resource type="LabelSettings" uid="uid://brbf5lml7xnsv" path="res://ui/pixel_label_settings.tres" id="2_eo4ue"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eo4ue"]
@@ -12,7 +12,7 @@ content_margin_top = 4.0
 content_margin_right = 6.0
 content_margin_bottom = 4.0
 
-[node name="DebugHud" type="CanvasLayer"]
+[node name="DebugMenu" type="CanvasLayer"]
 script = ExtResource("1_do8ac")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

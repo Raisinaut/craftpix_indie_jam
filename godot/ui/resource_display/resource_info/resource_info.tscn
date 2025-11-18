@@ -1,11 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://di43x642o2nm3"]
+[gd_scene load_steps=8 format=3 uid="uid://di43x642o2nm3"]
 
 [ext_resource type="Script" uid="uid://bcgq5d6sgkaga" path="res://ui/resource_display/resource_info/resource_info.gd" id="1_wfyae"]
 [ext_resource type="Texture2D" uid="uid://dqm6r0kraajyj" path="res://assets/free-top-down-roguelike-game-kit-pixel-art-craftpix-net-436971/4 GUI/1 Interface/TileMap8.png" id="2_x33pl"]
 [ext_resource type="LabelSettings" uid="uid://brbf5lml7xnsv" path="res://ui/pixel_label_settings.tres" id="3_p1rxi"]
 [ext_resource type="PackedScene" uid="uid://b5vhqs876o4tm" path="res://ui/animated_icons/coin_icon.tscn" id="4_1k5q3"]
+[ext_resource type="Script" uid="uid://bv4rn6ng1nnxu" path="res://ui/resource_display/resource_info/change_list.gd" id="5_2akem"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_276te"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2akem"]
 
 [node name="ResourceInfo" type="PanelContainer"]
 size_flags_horizontal = 8
@@ -13,15 +16,19 @@ size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_276te")
 script = ExtResource("1_wfyae")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/PanelContainer"]
+[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/HBoxContainer/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("2_x33pl")
@@ -31,26 +38,26 @@ patch_margin_top = 3
 patch_margin_bottom = 2
 axis_stretch_horizontal = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 6
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 2
 
-[node name="NameLabel" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer"]
+[node name="NameLabel" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "STASH"
 label_settings = ExtResource("3_p1rxi")
 
-[node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/PanelContainer2"]
+[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/HBoxContainer/PanelContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("2_x33pl")
@@ -60,24 +67,45 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/PanelContainer2"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PanelContainer2/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 2
 
-[node name="AmountLabel" type="Label" parent="HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
+[node name="AmountLabel" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "999"
 label_settings = ExtResource("3_p1rxi")
 
-[node name="IconTexture" parent="HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer" instance=ExtResource("4_1k5q3")]
+[node name="IconTexture" parent="VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer" instance=ExtResource("4_1k5q3")]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="ChangeDisplay" type="PanelContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2akem")
+script = ExtResource("5_2akem")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ChangeDisplay"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 4
+
+[node name="ChangeLabel" type="Label" parent="VBoxContainer/ChangeDisplay/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+label_settings = ExtResource("3_p1rxi")
+horizontal_alignment = 2

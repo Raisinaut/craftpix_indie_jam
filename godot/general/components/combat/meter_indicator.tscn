@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://cxulvkcn24vvd" path="res://assets/ui/bar2.png" id="3_fh4r6"]
 
 [node name="MeterIndicator" type="TextureProgressBar"]
-offset_right = 22.0
-offset_bottom = 5.0
+offset_right = 16.0
+offset_bottom = 4.0
 max_value = 1.0
 step = 0.01
 value = 0.5
@@ -27,5 +27,5 @@ wait_time = 3.0
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 0
 offset_right = 1.0
-offset_bottom = 5.0
+offset_bottom = 4.0
 color = Color(0.09411765, 0.078431375, 0.14509805, 1)

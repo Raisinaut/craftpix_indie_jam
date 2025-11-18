@@ -1,17 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://b3bvpi5igruyf"]
+[gd_scene load_steps=8 format=3 uid="uid://b3bvpi5igruyf"]
 
+[ext_resource type="Script" uid="uid://bcbk3cvmy2yag" path="res://entities/objects/treasure/stash.gd" id="1_ff8pv"]
 [ext_resource type="Texture2D" uid="uid://brihtnpqv5gw1" path="res://assets/free-top-down-roguelike-game-kit-pixel-art-craftpix-net-436971/2 Dungeon Tileset/2 Objects/Other/20.png" id="1_svufx"]
 [ext_resource type="Texture2D" uid="uid://b4tbdcsay2un7" path="res://assets/free-top-down-roguelike-game-kit-pixel-art-craftpix-net-436971/2 Dungeon Tileset/2 Objects/Other/19.png" id="2_formp"]
 [ext_resource type="Texture2D" uid="uid://cydhvdd8v2t45" path="res://assets/free-top-down-roguelike-game-kit-pixel-art-craftpix-net-436971/2 Dungeon Tileset/2 Objects/Other/18.png" id="3_quy6f"]
 [ext_resource type="Texture2D" uid="uid://mlqt3t00chd2" path="res://assets/free-top-down-roguelike-game-kit-pixel-art-craftpix-net-436971/2 Dungeon Tileset/2 Objects/Other/17.png" id="4_6i1vn"]
-[ext_resource type="Texture2D" uid="uid://hf18btfycu0q" path="res://assets/free-top-down-roguelike-game-kit-pixel-art-craftpix-net-436971/2 Dungeon Tileset/2 Objects/Other/33.png" id="5_8o118"]
-[ext_resource type="Texture2D" uid="uid://dw2kj3ykxcejh" path="res://assets/free-top-down-roguelike-game-kit-pixel-art-craftpix-net-436971/2 Dungeon Tileset/2 Objects/Other/34.png" id="6_mm7qj"]
-[ext_resource type="Texture2D" uid="uid://cpjyaib6pwc3o" path="res://assets/free-top-down-roguelike-game-kit-pixel-art-craftpix-net-436971/2 Dungeon Tileset/2 Objects/Other/32.png" id="7_yirr5"]
-[ext_resource type="Texture2D" uid="uid://odt4vuxsjn8w" path="res://assets/free-top-down-roguelike-game-kit-pixel-art-craftpix-net-436971/2 Dungeon Tileset/2 Objects/Other/31.png" id="8_3jh1l"]
+[ext_resource type="Texture2D" uid="uid://dy6dmfb8o8o7u" path="res://assets/objects/decoration/bag_pile.png" id="5_g2h60"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_svufx"]
 
-[node name="Treasure" type="Node2D"]
+[node name="Stash" type="Node2D"]
+script = ExtResource("1_ff8pv")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -20,45 +19,34 @@ position = Vector2(0, -2)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_svufx")
 
-[node name="Shadow" type="Node2D" parent="."]
-position = Vector2(-24, 4)
-
 [node name="Coins" type="Node2D" parent="."]
 position = Vector2(0, -6)
 
 [node name="20" type="Sprite2D" parent="Coins"]
-position = Vector2(7, 15)
+position = Vector2(6, 9)
 texture = ExtResource("1_svufx")
+offset = Vector2(0.5, 0)
 
 [node name="19" type="Sprite2D" parent="Coins"]
-position = Vector2(-9, 13)
+position = Vector2(-9, 11)
 texture = ExtResource("2_formp")
+offset = Vector2(0.5, 0.5)
 
 [node name="18" type="Sprite2D" parent="Coins"]
-position = Vector2(-17, 9)
+position = Vector2(-14, 8)
 texture = ExtResource("3_quy6f")
+offset = Vector2(0.5, 0.5)
 
 [node name="17" type="Sprite2D" parent="Coins"]
-position = Vector2(-15, 2)
+position = Vector2(-12, 3)
 texture = ExtResource("4_6i1vn")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -6)
-texture = ExtResource("5_8o118")
-
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(7, -3)
-texture = ExtResource("6_mm7qj")
-
-[node name="32" type="Sprite2D" parent="."]
-position = Vector2(-9, -3)
-texture = ExtResource("7_yirr5")
-
-[node name="31" type="Sprite2D" parent="."]
-position = Vector2(0, 3)
-texture = ExtResource("8_3jh1l")
-
-[node name="18" type="Sprite2D" parent="."]
-position = Vector2(15, -1)
+[node name="21" type="Sprite2D" parent="Coins"]
+position = Vector2(14, 5)
 texture = ExtResource("3_quy6f")
+offset = Vector2(0.5, 0.5)
 flip_h = true
+
+[node name="Bags" type="Sprite2D" parent="."]
+texture = ExtResource("5_g2h60")
+offset = Vector2(0, -4)

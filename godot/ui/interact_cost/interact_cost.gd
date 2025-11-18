@@ -16,6 +16,8 @@ var flash_tween : Tween
 
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
 	flash_color.modulate.a = 0.0
 	linked_area.interacted.connect(_on_linked_area_interacted)
 

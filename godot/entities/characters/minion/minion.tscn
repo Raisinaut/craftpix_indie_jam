@@ -51,5 +51,7 @@ max_stamina = 20
 unlimited_stamina = false
 
 [node name="MeterIndicator" parent="." index="7"]
+offset_left = -8.0
+offset_right = 8.0
 tint_progress = Color(0.3882353, 0.78039217, 0.3019608, 1)
 tracking_stat = "stamina"

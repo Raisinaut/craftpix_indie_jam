@@ -18,8 +18,12 @@ radius = 6.0
 material = SubResource("ShaderMaterial_4wlbk")
 
 [node name="Stats" parent="." index="4"]
-max_hp = 5
+max_hp = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_pktuf")
+
+[node name="MeterIndicator" parent="." index="6"]
+offset_top = -21.0
+offset_bottom = -17.0

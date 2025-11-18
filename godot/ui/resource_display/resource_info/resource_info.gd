@@ -4,6 +4,7 @@ extends PanelContainer
 @onready var name_label = %NameLabel
 @onready var amount_label = %AmountLabel
 @onready var texture = %IconTexture
+@onready var change_display = %ChangeDisplay
 
 var resource_name : String = "" : set = set_resource_name
 var resource_amount : int = 0 : set = set_resource_amount
@@ -17,6 +18,9 @@ func set_resource_name(value : String) -> void:
 	%NameLabel.text = resource_name
 
 func set_resource_amount(value : int) -> void:
+	var change_amount = value - resource_amount
+	if change_amount:
+		change_display.accumulate(change_amount)
 	resource_amount = value
 	%AmountLabel.text = str(resource_amount)
 	bounce_element(%AmountLabel)

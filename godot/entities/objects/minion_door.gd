@@ -29,7 +29,7 @@ func use() -> void:
 	if not door.is_closed():
 		return
 	if GameManager.can_afford(use_cost):
-		GameManager.currency -= use_cost
+		GameManager.spend_currency(use_cost)
 		print("door used")
 		door.open()
 

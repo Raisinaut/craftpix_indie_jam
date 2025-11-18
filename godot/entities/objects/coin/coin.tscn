@@ -1,0 +1,143 @@
+[gd_scene load_steps=16 format=3 uid="uid://dcmfqyxtr4oty"]
+
+[ext_resource type="Texture2D" uid="uid://bslbu0amb0est" path="res://assets/objects/coin.png" id="1_a3cx1"]
+[ext_resource type="Script" uid="uid://yp2hpa3ppdmb" path="res://entities/objects/coin/coin.gd" id="1_bnwvg"]
+[ext_resource type="Texture2D" uid="uid://dkexny4e78lr7" path="res://assets/particles/sparkle_a.png" id="2_mwj88"]
+[ext_resource type="Texture2D" uid="uid://chv0t4tdxhoj7" path="res://assets/objects/shadow_small.png" id="2_u355s"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vxmcp"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnwvg"]
+atlas = ExtResource("1_a3cx1")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u355s"]
+atlas = ExtResource("1_a3cx1")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwj88"]
+atlas = ExtResource("1_a3cx1")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxmcp"]
+atlas = ExtResource("1_a3cx1")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3kpim"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnwvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u355s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwj88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxmcp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bnwvg"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_u355s"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:offset:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-4, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_mwj88"]
+resource_name = "bounce"
+length = 0.5
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:offset:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-4, 0, 0, 0, 0, -15.699902, -0.1, 0, 0.1, 0, -4, 0, 0, 0, 0, -9.552256, -0.1, 0, 0.1, 0, -4, 0, 0, 0, 0, -5.38436, -0.05, 0, 0.05, 0, -4, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.45, 0.49729222)
+}
+
+[sub_resource type="Animation" id="Animation_bnwvg"]
+resource_name = "collect"
+length = 0.3
+step = 0.1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:offset:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-4, -0.25, 0, 0, -5.604354, -19.848833, -0.3, 0.2080288, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mwj88"]
+_data = {
+&"RESET": SubResource("Animation_u355s"),
+&"bounce": SubResource("Animation_mwj88"),
+&"collect": SubResource("Animation_bnwvg")
+}
+
+[node name="Coin" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_bnwvg")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_vxmcp")
+amount = 4
+texture = ExtResource("2_mwj88")
+lifetime = 0.5
+emission_shape = 4
+emission_points = PackedVector2Array(-3, 0, -4, -4, -3, -8, 4, 0, 5, -4, 4, -8)
+emission_colors = PackedColorArray()
+gravity = Vector2(0, 0)
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.5019608)
+z_index = -1
+texture = ExtResource("2_u355s")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3kpim")
+autoplay = "default"
+frame_progress = 0.21931125
+offset = Vector2(0, -4)
+
+[node name="Detection" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
+shape = SubResource("CircleShape2D_bnwvg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_mwj88")
+}

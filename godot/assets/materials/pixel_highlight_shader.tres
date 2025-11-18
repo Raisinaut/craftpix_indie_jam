@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://2vp8iw32kw12"]
 
-[ext_resource type="Shader" uid="uid://cfrny315ppyf3" path="res://assets/shaders/pixel_outline.gdshader" id="1_pvlbd"]
+[ext_resource type="Shader" uid="uid://cfrny315ppyf3" path="res://general/shaders/pixel_outline.gdshader" id="1_pvlbd"]
 
 [resource]
 resource_local_to_scene = true

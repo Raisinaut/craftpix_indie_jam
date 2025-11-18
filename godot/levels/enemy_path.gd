@@ -16,6 +16,7 @@ var interval_reduction_rate : float = 0.05
 
 func _ready() -> void:
 	start_spawn_timer()
+	path_end_reached.connect(_on_path_end_reached)
 
 func start_spawn_timer() -> void:
 	get_tree().create_timer(spawn_interval).timeout.connect(_on_spawn_timer_timeout)
@@ -32,30 +33,34 @@ func _process(delta: float) -> void:
 			i.queue_free()
 	spawn_interval -= interval_reduction_rate * delta
 	spawn_interval = clamp(spawn_interval, min_interval, max_interval)
-	print(spawn_interval)
 
 func add_follower() -> void:
 	# create new path
-	var path = PathFollow2D.new()
-	path.rotates = false
-	path.loop = false
-	call_deferred("add_child", path)
-	await path.ready
+	var follower = PathFollow2D.new()
+	follower.rotates = false
+	follower.loop = false
+	call_deferred("add_child", follower)
+	await follower.ready
 	# attach instance to path
 	var inst : Enemy = enemy_scene.instantiate()
-	path.call_deferred("add_child", inst)
-	inst.died.connect(_on_inst_died.bind(path))
-	movers.append(path)
-
-func _on_inst_died(path) -> void:
-	movers.erase(path)
-	GameManager.currency += 1 # FIXME May want to relocate this?
-
-func _on_spawn_timer_timeout() -> void:
-	add_follower()
-	start_spawn_timer()
+	follower.call_deferred("add_child", inst)
+	inst.died.connect(_on_inst_died.bind(follower))
+	movers.append(follower)
 
 func get_leading_entity():
 	if get_children().size() > 0:
 		return movers[0].get_child(0)
 	return null
+
+
+# SIGNALS ----------------------------------------------------------------------
+func _on_inst_died(follower) -> void:
+	EntityManager.spawn_coin(follower.global_position)
+	movers.erase(follower)
+
+func _on_path_end_reached() -> void:
+	GameManager.lose_currency(1)
+
+func _on_spawn_timer_timeout() -> void:
+	add_follower()
+	start_spawn_timer()

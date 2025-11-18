@@ -10,6 +10,7 @@ extends Node2D
 
 var highlight_idx = Vector2i.ZERO
 var selected_scene = -1
+var refund_percent = 0.5
 
 enum MODES {
 	PLACE,
@@ -56,12 +57,13 @@ func update_highlight():
 func place_trap(cost : int) -> void:
 	var tile_idx = selected_scene + 1
 	if is_idx_valid(tile_idx):
-		GameManager.currency -= cost
+		GameManager.spend_currency(cost)
 		traps.set_cell(highlight_idx, 0, Vector2i(0, 0), tile_idx)
 
 func remove_trap(cost : int) -> void:
 	traps.erase_cell(highlight_idx)
-	GameManager.currency += int(cost * 0.5)
+	var refund_amount = int(cost * refund_percent)
+	GameManager.gain_currency(refund_amount)
 
 func get_highlighted_scene() -> PackedScene:
 	var tile_idx = traps.get_cell_alternative_tile(highlight_idx)
