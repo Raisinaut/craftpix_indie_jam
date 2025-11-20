@@ -1,10 +1,9 @@
-class_name EraseButton
+class_name SelectionButton
 extends PanelContainer
 
 signal focus_changed(state : bool)
 signal selected
 
-@onready var function_icon = %FunctionIcon
 @onready var disable_overlay = %DisableOverlay
 @onready var overlay_text = %OverlayText
 @onready var flash_color = %FlashColor
@@ -12,15 +11,23 @@ signal selected
 
 var disabled := false : set = set_disabled
 var focused := false : set = set_focused
+var hovered := false
 var flash_tween : Tween
+
+enum FUNCTIONS {
+	PLACE,
+	ERASE
+}
+
+@export var function : FUNCTIONS
+
 
 func _ready() -> void:
 	# Setup signals
-	GameManager.currency_modified.connect(_on_game_manager_currency_modified)
 	focus_entered.connect(_on_focus_entered)
 	focus_exited.connect(_on_focus_exited)
-	mouse_entered.connect(grab_focus)
-	mouse_exited.connect(release_focus)
+	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exited)
 	
 	overlay_text.hide()
 	flash_color.hide()
@@ -32,13 +39,11 @@ func _input(event: InputEvent) -> void:
 		selected.emit()
 		flash()
 
-func update_disabled():
-	if disabled:
-		focus_changed.emit(focused)
-	#if disabled:
-		#focus_mode = Control.FOCUS_NONE
-	#else:
-		#focus_mode = Control.FOCUS_ALL
+#func _on_set_disabled():
+	#if hovered:
+		## re-emit focus state to update related data 
+		## for nodes that rely on those signals
+		#focus_changed.emit(focused)
 
 
 # EFFECTS ----------------------------------------------------------------------
@@ -51,6 +56,14 @@ func flash():
 
 
 # SIGNALS ----------------------------------------------------------------------
+func _on_mouse_entered() -> void:
+	grab_focus()
+	hovered = true
+
+func _on_mouse_exited() -> void:
+	release_focus()
+	hovered = false
+
 func _on_focus_entered() -> void:
 	#overlay_text.show()
 	focused = true
@@ -59,14 +72,15 @@ func _on_focus_exited() -> void:
 	overlay_text.hide()
 	focused = false
 
-func _on_game_manager_currency_modified(_value : int) -> void:
-	update_disabled()
-
 
 # SETTERS ----------------------------------------------------------------------
 func set_disabled(state : bool) -> void:
 	disabled = state
 	disable_overlay.visible = disabled
+	if hovered:
+		# re-emit focus state to update related data 
+		# for nodes that rely on those signals
+		focus_changed.emit(focused)
 
 func set_focused(state : bool) -> void:
 	focused = state

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cjv3bvptdpiap"]
 
-[ext_resource type="Script" uid="uid://bu80h2b1remc3" path="res://ui/trap_selection/erase_button/erase_button.gd" id="1_k6fv2"]
+[ext_resource type="Script" uid="uid://bu80h2b1remc3" path="res://ui/trap_selection/erase_button/selection_button.gd" id="1_k6fv2"]
 [ext_resource type="Texture2D" uid="uid://c3hgkio6yl7xc" path="res://assets/ui/icons/erase_icon.png" id="2_o6gyt"]
 [ext_resource type="Texture2D" uid="uid://dqm6r0kraajyj" path="res://assets/free-top-down-roguelike-game-kit-pixel-art-craftpix-net-436971/4 GUI/1 Interface/TileMap8.png" id="2_ujdl8"]
 [ext_resource type="LabelSettings" uid="uid://brbf5lml7xnsv" path="res://ui/pixel_label_settings.tres" id="4_v6iom"]
@@ -12,6 +12,7 @@ offset_right = 18.0
 offset_bottom = 21.0
 focus_mode = 2
 script = ExtResource("1_k6fv2")
+function = 1
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 2

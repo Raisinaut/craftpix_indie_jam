@@ -41,18 +41,18 @@ func _on_button_selected(btn) -> void:
 			var data : TrapData = get_trap_data_for_scene(map.get_highlighted_scene())
 			map.remove_trap(data.base_cost)
 
-func _on_button_focus_changed(is_focused : bool, btn) -> void:
+func _on_button_focus_changed(is_focused : bool, btn : SelectionButton) -> void:
 	map.selected_scene = -1
 	map.mode = map.MODES.PLACE
 	if is_focused:
 		selection_indicator.show()
 		selection_indicator.update_corners(btn)
-		if btn is TrapButton:
-			if not btn.disabled:
-				map.selected_scene = find_data_idx(btn.data)
-		else:
-			# TODO: Allow more extensible functionality for specific buttons
-			map.mode = map.MODES.REMOVE
+		match(btn.function):
+			SelectionButton.FUNCTIONS.PLACE:
+				if not btn.disabled:
+					map.selected_scene = find_data_idx(btn.data)
+			SelectionButton.FUNCTIONS.ERASE:
+				map.mode = map.MODES.REMOVE
 	else:
 		selection_indicator.hide()
 
