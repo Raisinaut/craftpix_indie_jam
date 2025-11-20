@@ -70,6 +70,10 @@ func _on_focus_exited() -> void:
 
 func _on_game_manager_currency_modified(_value : int) -> void:
 	update_disabled()
+	if not disabled:
+		# reemit focus state to update related data 
+		# for nodes that rely on those signals
+		focus_changed.emit(focused)
 
 
 # SETTERS ----------------------------------------------------------------------

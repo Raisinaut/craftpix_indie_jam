@@ -48,9 +48,10 @@ func _on_button_focus_changed(is_focused : bool, btn) -> void:
 		selection_indicator.show()
 		selection_indicator.update_corners(btn)
 		if btn is TrapButton:
-			if GameManager.can_afford(btn.data.base_cost):
+			if not btn.disabled:
 				map.selected_scene = find_data_idx(btn.data)
 		else:
+			# TODO: Allow more extensible functionality for specific buttons
 			map.mode = map.MODES.REMOVE
 	else:
 		selection_indicator.hide()

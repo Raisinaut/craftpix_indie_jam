@@ -126,6 +126,7 @@ script = ExtResource("5_sqy2y")
 warning_curve = SubResource("Curve_sqy2y")
 
 [node name="ColorVignette" type="ColorRect" parent="WarningOverlay"]
+visible = false
 material = SubResource("ShaderMaterial_sqy2y")
 anchors_preset = 15
 anchor_right = 1.0
@@ -159,6 +160,7 @@ tile_set = ExtResource("2_5krfb")
 
 [node name="Holes" type="TileMapLayer" parent="Map"]
 z_index = -10
+tile_map_data = PackedByteArray("AAAPAAgAAAAPAAIAAAAQAAgAAAAPAAIAAAAPAAcAAAAPAAIAAAAQAAcAAAAPAAIAAAAPAAkAAAAPAAIAAAAQAAkAAAAPAAIAAAAPAAYAAAAQAAIAAAAQAAYAAAAQAAEAAAA=")
 tile_set = ExtResource("2_5krfb")
 
 [node name="Traps" type="TileMapLayer" parent="Map"]
