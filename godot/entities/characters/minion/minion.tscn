@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://r8k11bdkl7eo"]
+[gd_scene load_steps=8 format=3 uid="uid://r8k11bdkl7eo"]
 
 [ext_resource type="PackedScene" uid="uid://bsov43rgqch03" path="res://entities/characters/moving_character.tscn" id="1_dfef6"]
-[ext_resource type="Shader" uid="uid://n1ttqdvx5d7s" path="res://general/components/flashing_sprite/flash.gdshader" id="2_77bjd"]
 [ext_resource type="Texture2D" uid="uid://6bmmbp6dmq62" path="res://assets/free-top-down-roguelike-game-kit-pixel-art-craftpix-net-436971/3 Dungeon Enemies/1 Goblin Barbarian/2.png" id="2_h5ji1"]
 [ext_resource type="PackedScene" uid="uid://d3km8xyfl0mly" path="res://entities/characters/minion/minion_control.tscn" id="3_2cecc"]
 [ext_resource type="PackedScene" uid="uid://dy1u5m1jhstii" path="res://entities/characters/enemy/navigation.tscn" id="4_34o0e"]
@@ -9,12 +8,6 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h5ji1"]
 radius = 4.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_u5myw"]
-resource_local_to_scene = true
-shader = ExtResource("2_77bjd")
-shader_parameter/flash_color = Color(1, 1, 1, 1)
-shader_parameter/flash_amount = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_34o0e"]
 radius = 22.0
@@ -28,7 +21,6 @@ base_speed = 60.0
 shape = SubResource("CircleShape2D_h5ji1")
 
 [node name="Sprite2D" parent="." index="2"]
-material = SubResource("ShaderMaterial_u5myw")
 texture = ExtResource("2_h5ji1")
 
 [node name="MinionControl" parent="." index="3" node_paths=PackedStringArray("control_target") instance=ExtResource("3_2cecc")]
@@ -47,11 +39,9 @@ target_group = "enemy"
 shape = SubResource("CircleShape2D_34o0e")
 
 [node name="Stats" parent="." index="5"]
-max_stamina = 20
+max_stamina = 5
 unlimited_stamina = false
 
 [node name="MeterIndicator" parent="." index="7"]
-offset_left = -8.0
-offset_right = 8.0
 tint_progress = Color(0.3882353, 0.78039217, 0.3019608, 1)
 tracking_stat = "stamina"

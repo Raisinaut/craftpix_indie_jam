@@ -1,9 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://dcmfqyxtr4oty"]
+[gd_scene load_steps=18 format=3 uid="uid://dcmfqyxtr4oty"]
 
 [ext_resource type="Texture2D" uid="uid://bslbu0amb0est" path="res://assets/objects/coin.png" id="1_a3cx1"]
 [ext_resource type="Script" uid="uid://yp2hpa3ppdmb" path="res://entities/objects/coin/coin.gd" id="1_bnwvg"]
 [ext_resource type="Texture2D" uid="uid://dkexny4e78lr7" path="res://assets/particles/sparkle_a.png" id="2_mwj88"]
 [ext_resource type="Texture2D" uid="uid://chv0t4tdxhoj7" path="res://assets/objects/shadow_small.png" id="2_u355s"]
+[ext_resource type="Material" uid="uid://b1tly5c16uths" path="res://general/materials/flash_pickup.tres" id="4_vxmcp"]
+[ext_resource type="Script" uid="uid://d2d8j0k3b1vi2" path="res://general/components/flashing_sprite/flash_control.gd" id="6_3kpim"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vxmcp"]
 particles_animation = true
@@ -125,10 +127,15 @@ z_index = -1
 texture = ExtResource("2_u355s")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+material = ExtResource("4_vxmcp")
 sprite_frames = SubResource("SpriteFrames_3kpim")
 autoplay = "default"
 frame_progress = 0.21931125
 offset = Vector2(0, -4)
+
+[node name="FlashControl" type="Node" parent="Sprite2D"]
+script = ExtResource("6_3kpim")
+metadata/_custom_type_script = "uid://d2d8j0k3b1vi2"
 
 [node name="Detection" type="Area2D" parent="."]
 collision_layer = 0

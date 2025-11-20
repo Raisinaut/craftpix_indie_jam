@@ -4,6 +4,7 @@ extends Node2D
 @onready var detection = $Detection
 @onready var animator = $AnimationPlayer
 @onready var sprite = $Sprite2D
+@onready var flash_control = $Sprite2D/FlashControl
 @onready var shadow = $Shadow
 @onready var sparkle_particles = $CPUParticles2D
 
@@ -18,6 +19,7 @@ func _ready() -> void:
 
 func _on_detection_body_entered(body : Node2D) -> void:
 	disable_detection()
+	flash_sprite()
 	elevate()
 	await move_to_stash()
 	GameManager.gain_currency(1)
@@ -52,6 +54,8 @@ func fade_element(node : Node2D, duration : float, reverse := false) -> void:
 	fade_tween = create_tween()
 	fade_tween.tween_property(node, "modulate:a", alpha_value, duration)
 
+func flash_sprite() -> void:
+	flash_control.flash(0.1)
 
 # UTILITY ----------------------------------------------------------------------
 func disable_detection():

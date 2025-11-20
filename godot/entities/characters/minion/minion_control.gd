@@ -44,8 +44,9 @@ func retreat():
 	control_target.set_state(control_target.STATES.MOVE)
 
 func pursue():
-	var enemy = get_nearest(get_tree().get_nodes_in_group("enemy"))
-	if enemy:
+	var all_enemies : Array = get_tree().get_nodes_in_group("enemy")
+	var enemy : MovingCharacter = get_nearest(all_enemies)
+	if enemy and not enemy.is_dead():
 		if target_in_attack_range():
 			navigation.stop_navigation()
 			control_target.set_state(control_target.STATES.ATTACK)

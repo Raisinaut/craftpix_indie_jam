@@ -17,6 +17,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	cost_display.visible = interaction_area.can_interact()
+	cost_display.disabled = not GameManager.can_afford(use_cost)
 
 func spawn() -> Node2D:
 	var inst = minion_scene.instantiate()
@@ -30,7 +31,6 @@ func use() -> void:
 		return
 	if GameManager.can_afford(use_cost):
 		GameManager.spend_currency(use_cost)
-		print("door used")
 		door.open()
 
 
@@ -40,5 +40,4 @@ func _on_interaction_area_interacted() -> void:
 
 func _on_door_fully_opened() -> void:
 	spawn()
-	print("spawned enemy")
 	door.close()

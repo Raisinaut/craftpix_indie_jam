@@ -82,6 +82,7 @@ mouse_filter = 2
 
 [node name="DisableOverlay" type="PanelContainer" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_0a22n")

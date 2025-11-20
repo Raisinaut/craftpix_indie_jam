@@ -127,6 +127,11 @@ func get_vector_direction(vector : Vector2, combine_horizontal := true) -> Strin
 			direction = "up"
 	return direction
 
+
+# CHECKS -----------------------------------------------------------------------
 func is_attacking() -> bool:
 	var current_animation : String = sprite_animator.current_animation
 	return current_animation.begins_with("attack")
+
+func is_dead() -> bool:
+	return state == STATES.DEATH
