@@ -6,18 +6,18 @@ extends Node2D
 @onready var door = $Door
 @onready var interaction_area = $InteractionArea
 @onready var spawn_location = $SpawnLocation
-@onready var cost_display = $CostDisplay
+@onready var interact_prompt = $InteractPrompt
 
 
 func _ready() -> void:
-	cost_display.set_cost(use_cost)
+	interact_prompt.set_cost(use_cost)
 	# SIGNAL SETUP
 	interaction_area.interacted.connect(_on_interaction_area_interacted)
 	door.fully_opened.connect(_on_door_fully_opened)
 
 func _process(_delta: float) -> void:
-	cost_display.visible = interaction_area.can_interact()
-	cost_display.disabled = not GameManager.can_afford(use_cost)
+	interact_prompt.visible = interaction_area.can_interact()
+	interact_prompt.disabled = not GameManager.can_afford(use_cost)
 
 func spawn() -> Node2D:
 	var inst = minion_scene.instantiate()

@@ -1,12 +1,12 @@
 [gd_scene load_steps=28 format=3 uid="uid://lmebpt6opvja"]
 
-[ext_resource type="Script" uid="uid://bhmugkt112es3" path="res://entities/objects/fire_trap/fire_trap.gd" id="1_4vp1b"]
+[ext_resource type="Script" uid="uid://bhmugkt112es3" path="res://entities/traps/fire_trap/fire_trap.gd" id="1_4vp1b"]
 [ext_resource type="Texture2D" uid="uid://cw6cmeriakret" path="res://assets/objects/traps/fire_trap/fire_trap.png" id="1_uigei"]
 [ext_resource type="Texture2D" uid="uid://bg4cyndnyv1vh" path="res://assets/objects/traps/fire_trap/fire_trap_generation.png" id="3_4vp1b"]
-[ext_resource type="Script" uid="uid://45haxxqm2ens" path="res://entities/objects/fire_trap/fireball_pivot.gd" id="3_qmrr5"]
+[ext_resource type="Script" uid="uid://45haxxqm2ens" path="res://entities/traps/fire_trap/fireball_pivot.gd" id="3_qmrr5"]
 [ext_resource type="PackedScene" uid="uid://su5uftcnsxde" path="res://entities/projectiles/fireball.tscn" id="4_dda22"]
 [ext_resource type="Script" uid="uid://b545io1mgm2pc" path="res://general/components/interaction_area/interaction_area.gd" id="6_suj3x"]
-[ext_resource type="PackedScene" uid="uid://pfvy78ys0l41" path="res://ui/interact_cost/interact_cost.tscn" id="7_x8jmv"]
+[ext_resource type="PackedScene" uid="uid://pfvy78ys0l41" path="res://ui/interact_prompt/interact_prompt.tscn" id="7_x8jmv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4vp1b"]
 atlas = ExtResource("1_uigei")

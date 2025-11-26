@@ -13,10 +13,11 @@ var selected_scene = -1
 var refund_percent = 0.5
 
 enum MODES {
+	DEFAULT,
 	PLACE,
 	REMOVE
 }
-var mode = MODES.PLACE
+var mode = MODES.DEFAULT
 
 
 func _ready() -> void:
@@ -38,18 +39,26 @@ func update_hover():
 
 func update_highlight():
 	match mode:
-		MODES.PLACE:
-			highlight_box.visible = is_highlighting()
-			highlight_box.play("place")
-			highlight_box.modulate = Color("FFFFFF")
-			if not can_place():
-				highlight_box.modulate = Color("f6757a")
-		MODES.REMOVE:
+		MODES.DEFAULT:
+			highlight_box.play("default")
 			highlight_box.visible = true
+			highlight_box.modulate = Color("c0cbdc")
+			if not can_place():
+				highlight_box.modulate = Color("f5767a")
+		MODES.PLACE:
+			highlight_box.play("place")
+			#highlight_box.visible = is_highlighting()
+			if not is_highlighting():
+				highlight_box.play("default")
+			highlight_box.modulate = Color("ffffff")
+			if not can_place():
+				highlight_box.modulate = Color("f5767a")
+		MODES.REMOVE:
 			highlight_box.play("remove")
+			highlight_box.visible = true
 			highlight_box.modulate = Color("63c74d")
 			if not can_remove():
-				highlight_box.modulate = Color("f6757a")
+				highlight_box.modulate = Color("f5767a")
 	if highlight_box.visible:
 		var highlight_pos = traps.map_to_local(highlight_idx)
 		highlight_box.global_position = highlight_pos
@@ -71,6 +80,14 @@ func get_highlighted_scene() -> PackedScene:
 	var scene_collection : TileSetScenesCollectionSource = trap_tiles.get_source(0)
 	var trap = scene_collection.get_scene_tile_scene(tile_idx)
 	return trap
+
+
+# SETUP ------------------------------------------------------------------------
+func add_trap_tile(scene : PackedScene) -> void:
+	var trap_tiles : TileSet = traps.tile_set
+	var scene_collection: TileSetScenesCollectionSource = trap_tiles.get_source(0)
+	scene_collection.create_scene_tile(scene)
+
 
 # CHECKS -----------------------------------------------------------------------
 func is_cell_valid(coords : Vector2i) -> bool:

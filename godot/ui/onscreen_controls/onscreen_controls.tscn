@@ -1,0 +1,86 @@
+[gd_scene load_steps=4 format=3 uid="uid://dufrxn7xbtkv6"]
+
+[ext_resource type="PackedScene" uid="uid://d007hs22os5e6" path="res://ui/onscreen_controls/joystick/joystick.tscn" id="1_1ubqv"]
+[ext_resource type="Script" uid="uid://cc2betc4t3ij3" path="res://ui/onscreen_controls/onscreen_controls.gd" id="1_ch1gx"]
+[ext_resource type="Script" uid="uid://d25u3pkpkg626" path="res://ui/onscreen_controls/joystick_control.gd" id="1_h5dhy"]
+
+[node name="OnscreenControls" type="CanvasLayer"]
+script = ExtResource("1_ch1gx")
+test_joystick = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="JoystickControl" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_h5dhy")
+
+[node name="ScreenPressAreas" type="MarginContainer" parent="JoystickControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="JoystickControl/ScreenPressAreas"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="LeftSide" type="ColorRect" parent="JoystickControl/ScreenPressAreas/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+color = Color(0, 0, 0, 0.25490198)
+
+[node name="Spacer" type="Control" parent="JoystickControl/ScreenPressAreas/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RightSide" type="ColorRect" parent="JoystickControl/ScreenPressAreas/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+color = Color(0, 0, 0, 0.25490198)
+
+[node name="Joystick" parent="JoystickControl" instance=ExtResource("1_1ubqv")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 50.0
+mouse_filter = 2

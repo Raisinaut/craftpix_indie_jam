@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://d007hs22os5e6"]
+
+[ext_resource type="Script" uid="uid://dy1m8gk08cps6" path="res://ui/onscreen_controls/joystick/joystick.gd" id="2_gdilp"]
+[ext_resource type="Texture2D" uid="uid://x6pdi0u1ovjc" path="res://assets/ui/onscreen_buttons/circle.png" id="3_gdilp"]
+
+[node name="Joystick" type="TextureRect"]
+modulate = Color(0.54509807, 0.60784316, 0.7058824, 1)
+self_modulate = Color(0.29, 0.29, 0.29, 0.78431374)
+texture_filter = 2
+custom_minimum_size = Vector2(50, 50)
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gdilp")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("2_gdilp")
+
+[node name="StickPivot" type="Node2D" parent="."]
+position = Vector2(25, 25)
+
+[node name="Stick" type="Sprite2D" parent="StickPivot"]
+texture_filter = 2
+scale = Vector2(0.07812499, 0.07812501)
+texture = ExtResource("3_gdilp")

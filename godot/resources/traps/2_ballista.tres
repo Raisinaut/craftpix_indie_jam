@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TrapData" load_steps=4 format=3 uid="uid://t4pppabqwva3"]
+
+[ext_resource type="Texture2D" uid="uid://b04v75lhswta" path="res://assets/objects/traps/ballista/ballista_icon.png" id="1_1gqan"]
+[ext_resource type="PackedScene" uid="uid://c5mdvfauoed2g" path="res://entities/traps/ballista/ballista.tscn" id="2_7ipwo"]
+[ext_resource type="Script" uid="uid://bv4r0db7i8vw0" path="res://general/classes/trap_data.gd" id="3_6lygb"]
+
+[resource]
+script = ExtResource("3_6lygb")
+display_name = "Ballista"
+icon = ExtResource("1_1gqan")
+scene = ExtResource("2_7ipwo")
+base_cost = 10
+base_interval = 2.0
+base_duration = 1.0
+metadata/_custom_type_script = "uid://bv4r0db7i8vw0"

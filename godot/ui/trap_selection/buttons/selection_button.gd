@@ -39,12 +39,6 @@ func _input(event: InputEvent) -> void:
 		selected.emit()
 		flash()
 
-#func _on_set_disabled():
-	#if hovered:
-		## re-emit focus state to update related data 
-		## for nodes that rely on those signals
-		#focus_changed.emit(focused)
-
 
 # EFFECTS ----------------------------------------------------------------------
 func flash():
@@ -79,7 +73,7 @@ func set_disabled(state : bool) -> void:
 	disable_overlay.visible = disabled
 	if hovered:
 		# re-emit focus state to update related data 
-		# for nodes that rely on those signals
+		# for nodes that also check the disabled state
 		focus_changed.emit(focused)
 
 func set_focused(state : bool) -> void:

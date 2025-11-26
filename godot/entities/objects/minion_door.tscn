@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cw7xhsfrpp4jh" path="res://entities/objects/minion_door.gd" id="1_mqv36"]
 [ext_resource type="PackedScene" uid="uid://r8k11bdkl7eo" path="res://entities/characters/minion/minion.tscn" id="2_om8hq"]
 [ext_resource type="Script" uid="uid://b545io1mgm2pc" path="res://general/components/interaction_area/interaction_area.gd" id="3_skd6e"]
-[ext_resource type="PackedScene" uid="uid://pfvy78ys0l41" path="res://ui/interact_cost/interact_cost.tscn" id="5_lc7yy"]
+[ext_resource type="PackedScene" uid="uid://pfvy78ys0l41" path="res://ui/interact_prompt/interact_prompt.tscn" id="5_lc7yy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lc7yy"]
 size = Vector2(17, 4)
@@ -29,7 +29,7 @@ shape = SubResource("RectangleShape2D_lc7yy")
 [node name="SpawnLocation" type="Node2D" parent="."]
 position = Vector2(0, 12)
 
-[node name="CostDisplay" parent="." node_paths=PackedStringArray("linked_area") instance=ExtResource("5_lc7yy")]
+[node name="InteractPrompt" parent="." node_paths=PackedStringArray("linked_area") instance=ExtResource("5_lc7yy")]
 offset_left = 0.0
 offset_top = -42.0
 offset_right = 0.0

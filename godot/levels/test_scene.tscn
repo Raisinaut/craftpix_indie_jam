@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://b13vwyaewc6tm"]
+[gd_scene load_steps=34 format=4 uid="uid://b13vwyaewc6tm"]
 
 [ext_resource type="PackedScene" uid="uid://yjjkhh7sb3m" path="res://general/debug/debug_menu.tscn" id="1_6gk0q"]
 [ext_resource type="PackedScene" uid="uid://b7gh3a6eb03y0" path="res://ui/resource_display/resource_display.tscn" id="1_a47p7"]
@@ -8,7 +8,6 @@
 [ext_resource type="TileSet" uid="uid://chyut4bk5txdn" path="res://tilesets/dungeon_terrain.tres" id="2_5krfb"]
 [ext_resource type="PackedScene" uid="uid://bqwtq0th0xf8r" path="res://ui/trap_selection/trap_selection.tscn" id="2_f3iph"]
 [ext_resource type="Script" uid="uid://ixlv8o45pmwu" path="res://levels/map.gd" id="2_vrunm"]
-[ext_resource type="PackedScene" uid="uid://lmebpt6opvja" path="res://entities/objects/fire_trap/fire_trap.tscn" id="3_vrunm"]
 [ext_resource type="Script" uid="uid://bmmeaqfs15cos" path="res://levels/intro_prompt.gd" id="3_wn8u6"]
 [ext_resource type="Script" uid="uid://cjudhtx3rtd6j" path="res://levels/enemy_path.gd" id="4_ohqux"]
 [ext_resource type="Texture2D" uid="uid://bo33kmayvd6bc" path="res://assets/ui/highlight/tile_highlight_b.png" id="5_1b2a2"]
@@ -16,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://vcm1xbqwt4l8" path="res://entities/characters/enemy/warrior/enemy_warrior.tscn" id="5_ohqux"]
 [ext_resource type="Script" uid="uid://dj31ygtup3hge" path="res://levels/warning_overlay.gd" id="5_sqy2y"]
 [ext_resource type="PackedScene" uid="uid://qsptluvvputt" path="res://entities/objects/minion_door.tscn" id="6_a47p7"]
+[ext_resource type="PackedScene" uid="uid://dufrxn7xbtkv6" path="res://ui/onscreen_controls/onscreen_controls.tscn" id="8_qxrr7"]
 [ext_resource type="Script" uid="uid://bnkygjicc4o7x" path="res://managers/entity_manager.gd" id="10_200ie"]
 [ext_resource type="PackedScene" uid="uid://dbk3p3q8hhi52" path="res://general/camera/shaky_cam.tscn" id="10_vehgu"]
 [ext_resource type="PackedScene" uid="uid://b3bvpi5igruyf" path="res://entities/objects/treasure/treasure.tscn" id="13_cnwds"]
@@ -35,6 +35,10 @@ shader = ExtResource("5_100t0")
 shader_parameter/vignette_intensity = 0.3
 shader_parameter/vignette_opacity = 1.0
 shader_parameter/vignette_rgb = Color(1, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxrr7"]
+atlas = ExtResource("5_1b2a2")
+region = Rect2(96, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1b2a2"]
 atlas = ExtResource("5_1b2a2")
@@ -62,6 +66,14 @@ region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vehgu"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxrr7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1b2a2")
@@ -92,7 +104,7 @@ animations = [{
 }]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_f3iph"]
-scenes/1/scene = ExtResource("3_vrunm")
+resource_name = "Traps"
 
 [sub_resource type="TileSet" id="TileSet_vehgu"]
 sources/0 = SubResource("TileSetScenesCollectionSource_f3iph")
@@ -106,6 +118,8 @@ point_count = 6
 [node name="Level" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_xaem1")
+
+[node name="OnscreenControls" parent="." instance=ExtResource("8_qxrr7")]
 
 [node name="ResourceDisplay" parent="." instance=ExtResource("1_a47p7")]
 
@@ -151,8 +165,7 @@ tile_set = ExtResource("2_5krfb")
 
 [node name="HighlightBox" type="AnimatedSprite2D" parent="Map/Ground"]
 sprite_frames = SubResource("SpriteFrames_vehgu")
-animation = &"remove"
-autoplay = "place"
+autoplay = "default"
 
 [node name="EnemyTrack" type="TileMapLayer" parent="Map"]
 z_index = -10

@@ -12,6 +12,8 @@ extends PanelContainer
 @onready var flash_color = %FlashColor
 @onready var disable_overlay = %DisableOverlay
 @onready var fx_container = %FxContainer
+@onready var touch_button = $TouchScreenButton
+
 @onready var original_position = global_position
 
 var flash_tween : Tween
@@ -23,7 +25,10 @@ func _ready() -> void:
 		return
 	fx_container.show()
 	flash_color.modulate.a = 0.0
-	linked_area.interacted.connect(_on_linked_area_interacted)
+	if linked_area:
+		linked_area.interacted.connect(_on_linked_area_interacted)
+	sync_touch_button_size()
+	touch_button.pressed.connect(_on_touch_button_pressed)
 
 func flash() -> void:
 	flash_color.modulate.a = 1.0
@@ -32,28 +37,20 @@ func flash() -> void:
 	flash_tween = create_tween()
 	flash_tween.tween_property(flash_color, "modulate:a", 0.0, 0.3)
 
-#func _process(delta: float) -> void:
-	#if not Engine.is_editor_hint():
-		#keep_onscreen()
-
-# FIXME: not respecting camera movement
-#func keep_onscreen() -> void:
-	#var viewport_rect = get_viewport().get_visible_rect()
-	#var viewport_origin = viewport_rect.position
-	#var viewport_end = viewport_rect.end
-	#var max_position = viewport_end - size
-	#global_position.x = clamp(original_position.x, viewport_origin.x, max_position.x)
-	#global_position.y = clamp(original_position.y, viewport_origin.y, max_position.y)
+func sync_touch_button_size() -> void:
+	touch_button.shape = RectangleShape2D.new()
+	touch_button.shape.size = size
+	touch_button.position = size / 2.0
 
 
 # SETTERS ----------------------------------------------------------------------
-func set_action(value : String):
+func set_action(value : String) -> void:
 	action = value
 	%ActionLabel.text = action
 	size.x = 0
 	position.x = -size.x / 2.0
 
-func set_cost(value : int):
+func set_cost(value : int) -> void:
 	cost = value
 	%CostSection.visible = cost > 0
 	#size.y = 0
@@ -67,3 +64,9 @@ func set_disabled(state : bool) -> void:
 # SIGNALS ----------------------------------------------------------------------
 func _on_linked_area_interacted() -> void:
 	flash()
+
+func _on_touch_button_pressed() -> void:
+	if linked_area:
+		linked_area.interacted.emit()
+	else:
+		push_error("Could not interact via touch_button without a linked area")
