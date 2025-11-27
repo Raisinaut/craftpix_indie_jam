@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://4tqlqg22tbpw"]
+
+[ext_resource type="Script" uid="uid://bdcab4qeqp8eb" path="res://entities/projectiles/linear_projectile.gd" id="1_d7ycy"]
+[ext_resource type="PackedScene" uid="uid://cw5nvw3ycioxa" path="res://entities/shadow.tscn" id="2_gdlky"]
+[ext_resource type="Texture2D" uid="uid://b7bdq3xwqi6iu" path="res://assets/objects/traps/ballista/arrow.png" id="2_sadbq"]
+[ext_resource type="Script" uid="uid://dfc5d2tb3beke" path="res://general/components/combat/hitbox.gd" id="3_cmigs"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sadbq"]
+radius = 2.0
+height = 6.0
+
+[node name="Arrow" type="CharacterBody2D"]
+collision_layer = 0
+motion_mode = 1
+script = ExtResource("1_d7ycy")
+
+[node name="Shadow" parent="." instance=ExtResource("2_gdlky")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = ExtResource("2_sadbq")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(2, 0)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_sadbq")
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("3_cmigs")
+metadata/_custom_type_script = "uid://dfc5d2tb3beke"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(2, 0)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_sadbq")

@@ -356,6 +356,8 @@ script = ExtResource("1_dsbbn")
 [node name="Shadow" parent="." instance=ExtResource("2_3sq6u")]
 z_index = -1
 offset = Vector2(-0.5, 0)
+frame = 1
+size = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = ExtResource("3_3sq6u")

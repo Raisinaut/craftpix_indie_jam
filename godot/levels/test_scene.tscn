@@ -182,7 +182,6 @@ y_sort_enabled = true
 tile_set = SubResource("TileSet_vehgu")
 
 [node name="TrapsHover" type="TileMapLayer" parent="Map"]
-modulate = Color(1, 1, 1, 0.5)
 y_sort_enabled = true
 tile_set = SubResource("TileSet_vehgu")
 
@@ -206,7 +205,7 @@ enemy_scene = ExtResource("5_ohqux")
 spawn_interval = 6.0
 
 [node name="MinionDoor2" parent="Entities" instance=ExtResource("6_a47p7")]
-position = Vector2(216, 32)
+position = Vector2(184, 32)
 
 [node name="MinionDoor" parent="Entities" instance=ExtResource("6_a47p7")]
 position = Vector2(56, -64)

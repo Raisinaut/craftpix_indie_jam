@@ -1,7 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cw5nvw3ycioxa"]
+[gd_scene load_steps=3 format=3 uid="uid://cw5nvw3ycioxa"]
 
-[ext_resource type="Texture2D" uid="uid://cs8a8s2x8phta" path="res://assets/free-top-down-roguelike-game-kit-pixel-art-craftpix-net-436971/1 Characters/Other/Shadow.png" id="1_uhksf"]
+[ext_resource type="Texture2D" uid="uid://cbfkktmgwggky" path="res://assets/objects/shadow.png" id="1_bcmcb"]
+[ext_resource type="Script" uid="uid://e0m3xsbq4s1n" path="res://entities/shadow.gd" id="2_bcmcb"]
 
 [node name="Shadow" type="Sprite2D"]
 modulate = Color(1, 1, 1, 0.5)
-texture = ExtResource("1_uhksf")
+texture = ExtResource("1_bcmcb")
+hframes = 2
+script = ExtResource("2_bcmcb")

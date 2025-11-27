@@ -9,7 +9,8 @@ extends Node2D
 @onready var highlight_box = $Ground/HighlightBox
 
 var highlight_idx = Vector2i.ZERO
-var selected_scene = -1
+var hover_opacity = 0.6 # visibility percent
+var selected_scene = -1 # -1 is null
 var refund_percent = 0.5
 
 enum MODES {
@@ -35,7 +36,13 @@ func update_hover():
 	highlight_idx = traps_hover.local_to_map(player_position)
 	var tile_idx = selected_scene + 1 #always add one when accessing tiles
 	if is_idx_valid(tile_idx):
+		var no_trap_present = is_cell_unused_by_layer(highlight_idx, traps)
+		traps_hover.visible = no_trap_present
 		traps_hover.set_cell(highlight_idx, 0, Vector2i(0, 0), tile_idx)
+		if can_place():
+			traps_hover.modulate = Color("ffffff") * hover_opacity
+		else:
+			traps_hover.modulate = Color("f5767a") * hover_opacity
 
 func update_highlight():
 	match mode:
@@ -91,12 +98,18 @@ func add_trap_tile(scene : PackedScene) -> void:
 
 # CHECKS -----------------------------------------------------------------------
 func is_cell_valid(coords : Vector2i) -> bool:
+	var valid = true
+	var layers_to_check : Array[TileMapLayer] = [track, traps]
+	for layer in layers_to_check:
+		if not is_cell_unused_by_layer(coords, layer):
+			valid = false
+			break
+	return valid
+
+func is_cell_unused_by_layer(coords : Vector2i, map : TileMapLayer) -> bool:
 	var usable_coords : Array = ground.get_used_cells()
-	var used_coords : Array = traps.get_used_cells()
-	var track_coords : Array = track.get_used_cells()
-	for c in used_coords:
-		usable_coords.erase(c)
-	for c in track_coords:
+	var map_coords : Array = map.get_used_cells()
+	for c in map_coords:
 		usable_coords.erase(c)
 	return usable_coords.has(coords)
 
