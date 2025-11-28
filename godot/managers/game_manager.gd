@@ -1,5 +1,7 @@
 extends Node
 
+const MAX_CURRENCY = 9999
+
 signal currency_modified
 signal currency_lost
 signal currency_spent
@@ -12,13 +14,19 @@ var resources : Dictionary = {
 	"stash" : "currency",
 }
 
+# TRACKED NODES
 var player : PlayerCharacter = null
 var stash : Node2D = null
+
+# CHEATS
+var infinite_money : bool = false : set = set_infinite_money
 
 
 # CURRENCY MODIFCATION ---------------------------------------------------------
 func set_currency(value : int) -> void:
 	currency = max(0, value)
+	if infinite_money:
+		currency = MAX_CURRENCY
 	currency_modified.emit(currency)
 
 func gain_currency(amount : int) -> void:
@@ -33,6 +41,14 @@ func spend_currency(amount : int) -> void:
 	currency -= amount
 	currency_spent.emit()
 
+
+# CHEATS -----------------------------------------------------------------------
+func set_infinite_money(state : bool) -> void:
+	infinite_money = state
+	if infinite_money:
+		currency = MAX_CURRENCY
+	else:
+		currency = 100
 
 # RESOURCE INFORMATION ---------------------------------------------------------
 func get_resource_modify_signal_name(resource_name : String) -> String:

@@ -22,6 +22,7 @@ var last_position : Vector2
 @export var attack_rate : float = 1.0
 
 @onready var sprite = $Sprite2D
+@onready var shadow = $Shadow
 @onready var sprite_animator = $SpriteAnimator
 @onready var stats = $Stats
 @onready var collision_shape = $CollisionShape2D
@@ -62,6 +63,7 @@ func move():
 func die() -> void:
 	died.emit()
 	play_animation_in_facing_direction("death", last_velocity)
+	shadow.hide()
 	await sprite_animator.animation_finished
 	queue_free()
 

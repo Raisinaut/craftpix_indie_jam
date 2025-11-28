@@ -29,6 +29,6 @@ func _on_value_changed(new_value : float) -> void:
 	progress_cap.position.x = lerp(min_cap_pos, max_cap_pos, new_value)
 
 func fade(alpha : float, duration) -> void:
-	fade_tween = create_tween()
 	if fade_tween: fade_tween.kill()
+	fade_tween = create_tween()
 	fade_tween.tween_property(self, "modulate:a", alpha, duration)

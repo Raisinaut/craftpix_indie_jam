@@ -17,3 +17,4 @@ func update_track_tiles() -> void:
 			track_tiles.append(map_pos)
 		sample_offset += change_interval
 	set_cells_terrain_path(track_tiles, 1, 0)
+	
