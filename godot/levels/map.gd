@@ -4,7 +4,6 @@ extends Node2D
 @onready var ground = $Ground
 @onready var holes = $Holes
 @onready var traps = $Traps
-@onready var track = $EnemyTrack
 @onready var traps_hover = $TrapsHover
 @onready var highlight_box = $Ground/HighlightBox
 
@@ -25,6 +24,7 @@ func _ready() -> void:
 	# Change ground z-index to allow for more layered spritework
 	ground.z_index = -10
 	highlight_box.z_index = 1
+	ground.update_track_tiles()
 
 func _process(delta: float) -> void:
 	update_hover()
@@ -99,7 +99,11 @@ func add_trap_tile(scene : PackedScene) -> void:
 # CHECKS -----------------------------------------------------------------------
 func is_cell_valid(coords : Vector2i) -> bool:
 	var valid = true
-	var layers_to_check : Array[TileMapLayer] = [track, traps]
+	# Check against track
+	if ground.track_tiles.has(coords):
+		valid = false
+	# Check against additional layers
+	var layers_to_check : Array[TileMapLayer] = [traps]
 	for layer in layers_to_check:
 		if not is_cell_unused_by_layer(coords, layer):
 			valid = false

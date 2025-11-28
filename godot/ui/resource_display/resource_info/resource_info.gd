@@ -35,6 +35,7 @@ func set_icon_texture_frames(value : Array[Texture]) -> void:
 
 func bounce_element(element : Control):
 	element.position.y = 0
+	if bounce_tween: bounce_tween.kill()
 	bounce_tween = create_tween().set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
 	bounce_tween.tween_property(element, "position:y", element.position.y - 3, 0.1)
 	bounce_tween.set_trans(Tween.TRANS_BOUNCE)

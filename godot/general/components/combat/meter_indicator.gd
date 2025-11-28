@@ -30,4 +30,5 @@ func _on_value_changed(new_value : float) -> void:
 
 func fade(alpha : float, duration) -> void:
 	fade_tween = create_tween()
+	if fade_tween: fade_tween.kill()
 	fade_tween.tween_property(self, "modulate:a", alpha, duration)

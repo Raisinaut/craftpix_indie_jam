@@ -13,7 +13,7 @@ var move_speed = 100
 func _ready() -> void:
 	hitbox.detected.connect(_on_hitbox_detected)
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	velocity = move_direction * move_speed
 	point_toward_move_direction()
 	move_and_slide()

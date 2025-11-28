@@ -58,15 +58,13 @@ func set_entity_distance(value) -> void:
 		entity.position = p
 
 func expand_entities():
-	if distance_tween:
-		distance_tween.kill()
+	if distance_tween: distance_tween.kill()
 	distance_tween = create_tween().set_ease(Tween.EASE_IN_OUT)
 	distance_tween.tween_property(self, "entity_distance", expand_distance, expand_time)
 	distance_tween.finished.connect(fully_expanded.emit)
 
 func retract_entities():
-	if distance_tween:
-		distance_tween.kill()
+	if distance_tween: distance_tween.kill()
 	distance_tween = create_tween().set_ease(Tween.EASE_IN_OUT)
 	distance_tween.tween_property(self, "entity_distance", 0, expand_time)
 	distance_tween.finished.connect(fully_retracted.emit)

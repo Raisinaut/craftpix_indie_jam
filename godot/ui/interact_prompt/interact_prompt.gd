@@ -32,8 +32,7 @@ func _ready() -> void:
 
 func flash() -> void:
 	flash_color.modulate.a = 1.0
-	if flash_tween:
-		flash_tween.kill()
+	if flash_tween: flash_tween.kill()
 	flash_tween = create_tween()
 	flash_tween.tween_property(flash_color, "modulate:a", 0.0, 0.3)
 
