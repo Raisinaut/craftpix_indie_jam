@@ -120,6 +120,7 @@ y_sort_enabled = true
 script = ExtResource("1_xaem1")
 
 [node name="OnscreenControls" parent="." instance=ExtResource("8_qxrr7")]
+test_joystick = false
 
 [node name="ResourceDisplay" parent="." instance=ExtResource("1_a47p7")]
 

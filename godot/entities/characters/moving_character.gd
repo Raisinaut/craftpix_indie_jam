@@ -48,16 +48,16 @@ func move():
 		velocity = base_speed * move_direction
 		last_velocity = velocity
 	else:
+		pass
 		velocity = Vector2.ZERO
 	move_and_slide()
 	
-	var anim_name = "walk_" + get_vector_direction(last_velocity)
+	play_animation_in_facing_direction("walk", last_velocity)
 	if move_direction != Vector2.ZERO:
 		sync_sprite_flip(velocity)
 	else:
 		if velocity == Vector2.ZERO:
-			anim_name = "idle_" + get_vector_direction(last_velocity)
-	sprite_animator.play(anim_name)
+			play_animation_in_facing_direction("idle", last_velocity)
 
 func die() -> void:
 	died.emit()
@@ -105,12 +105,12 @@ func sync_sprite_flip(vector : Vector2) -> void:
 
 
 func play_animation_in_facing_direction(anim_prefix : String, vector : Vector2):
-	var dir : String = get_vector_direction(vector)
+	var dir : String = get_vector_as_string(vector)
 	sprite_animator.play(anim_prefix + "_" + dir)
 
 ## Returns a string matching the vector's direction. [br]
 ## Combine_horizontal merges "left" and "right" into "side"
-func get_vector_direction(vector : Vector2, combine_horizontal := true) -> String:
+func get_vector_as_string(vector : Vector2, combine_horizontal := true) -> String:
 	var direction : String = ""
 	if abs(vector.x) > abs(vector.y):
 		if combine_horizontal:

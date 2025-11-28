@@ -13,3 +13,4 @@ func sync_animation_to_actual_velocity() -> void:
 func move() -> void:
 	sync_animation_to_actual_velocity()
 	sync_sprite_flip(actual_velocity)
+	last_velocity = actual_velocity
