@@ -203,7 +203,7 @@ y_sort_enabled = true
 curve = SubResource("Curve2D_x46hq")
 script = ExtResource("4_ohqux")
 enemy_scene = ExtResource("5_ohqux")
-spawn_interval = 6.0
+spawn_interval = 2.0
 
 [node name="MinionDoor2" parent="Entities" instance=ExtResource("6_a47p7")]
 position = Vector2(184, 32)

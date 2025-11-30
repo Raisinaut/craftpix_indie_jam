@@ -5,5 +5,5 @@
 [resource]
 font = ExtResource("1_raf0b")
 font_size = 8
-shadow_color = Color(0.09411765, 0.078431375, 0.14509805, 0.4117647)
+shadow_color = Color(0.22745098, 0.26666668, 0.4, 1)
 shadow_offset = Vector2(0, 1)

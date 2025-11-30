@@ -4,11 +4,11 @@ signal path_end_reached
 
 @export var enemy_scene : PackedScene
 
-@export var spawn_interval : float = 2.0
+@export var spawn_interval : float = 6.0 # 6.0 for easy
 
 var movers : Array[PathFollow2D] = []
 
-var max_interval = 4
+var max_interval = 6.0
 var min_interval = 0.5
 
 var interval_reduction_rate : float = 0.05
@@ -31,8 +31,8 @@ func _process(delta: float) -> void:
 			path_end_reached.emit()
 			movers.erase(i)
 			i.queue_free()
-	spawn_interval -= interval_reduction_rate * delta
-	spawn_interval = clamp(spawn_interval, min_interval, max_interval)
+	#spawn_interval -= interval_reduction_rate * delta
+	#spawn_interval = clamp(spawn_interval, min_interval, max_interval)
 
 func add_follower() -> void:
 	# create new path

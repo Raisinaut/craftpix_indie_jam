@@ -23,7 +23,7 @@ var last_registered_hit := {
 }
 var invincible := false : set = set_invincible
 var i_timer : SceneTreeTimer = null
-
+var disabled : bool = false : set = set_disabled
 
 
 func _init() -> void:
@@ -32,17 +32,14 @@ func _init() -> void:
 	monitorable = false
 	setup_collision()
 
-
 func setup_collision():
 	collision_layer = int(pow(2, 8-1))
 	collision_mask = int(pow(2, 7-1))
-
 
 func _ready() -> void:
 	connect("area_entered", self._on_area_entered)
 	connect("invincibility_started", self._on_invincibility_started)
 	connect("invincibility_ended", self._on_invincibility_ended)
-
 
 func register_hit(hitbox : HitBox):
 	if hitbox.owner == self:
@@ -71,24 +68,26 @@ func register_hit(hitbox : HitBox):
 	
 	hitbox.detected.emit(self)
 
-
 func is_friendly(hitbox : HitBox):
 	for g in friendly_groups:
 		if hitbox.owner.is_in_group(g):
 			return true
 	return false
 
+# SETTERS ----------------------------------------------------------------------
+func set_disabled(state : bool) -> void:
+	disabled = state
+	#set_deferred("monitorable", not disabled)
+	set_deferred("monitoring", not disabled)
 
 
 # INVINCIBILITY ---------------------------------------------------------------#
-
 func set_invincible(state):
 	invincible = state
 	if invincible:
 		emit_signal("invincibility_started")
 	else:
 		emit_signal("invincibility_ended")
-
 
 func start_invincibility(duration : float = invincibilty_duration):
 	self.set_invincible(true)
@@ -97,16 +96,12 @@ func start_invincibility(duration : float = invincibilty_duration):
 	i_timer.connect("timeout", self.set_invincible.bind(false))
 
 
-
 # SIGNALS ---------------------------------------------------------------------#
-
 func _on_area_entered(hitbox):
 	register_hit(hitbox)
 
-
 func _on_invincibility_started():
 	set_deferred("monitoring", false)
-
 
 func _on_invincibility_ended():
 	set_deferred("monitoring", true)

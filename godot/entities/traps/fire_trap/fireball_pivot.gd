@@ -7,7 +7,7 @@ signal fully_retracted
 @export var entity_count : int = 2
 @export var entity_scene : PackedScene
 @export var rotations_per_second : float = 0.5
-@export var rotate_clockwise : bool = true
+@export var clockwise_rotation : bool = true
 @export var expand_distance : float = 16
 @export var expand_time : float = 0.25
 
@@ -22,12 +22,12 @@ func _process(delta: float) -> void:
 func spin(delta : float):
 	var speed = (1 / rotations_per_second)
 	var rotation_amount = (2 * PI) / speed * delta
-	if not rotate_clockwise:
+	if not clockwise_rotation:
 		rotation_amount *= -1
 	rotate(rotation_amount)
 
 func flip_rotation_direction() -> void:
-	rotate_clockwise = not rotate_clockwise
+	clockwise_rotation = not clockwise_rotation
 
 # ENTITY CONTROL ---------------------------------------------------------------
 func populate_entites() -> void:

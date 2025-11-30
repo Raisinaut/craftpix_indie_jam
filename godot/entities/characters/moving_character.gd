@@ -26,6 +26,7 @@ var last_position : Vector2
 @onready var sprite_animator = $SpriteAnimator
 @onready var stats = $Stats
 @onready var collision_shape = $CollisionShape2D
+@onready var hurtbox = $HurtBox
 
 
 func _ready() -> void:
@@ -62,6 +63,7 @@ func move():
 
 func die() -> void:
 	died.emit()
+	hurtbox.set_disabled(true)
 	play_animation_in_facing_direction("death", last_velocity)
 	shadow.hide()
 	await sprite_animator.animation_finished

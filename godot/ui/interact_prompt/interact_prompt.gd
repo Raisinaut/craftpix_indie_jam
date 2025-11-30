@@ -1,12 +1,14 @@
 @tool
-
+class_name InteractPrompt
 extends PanelContainer
 
+@export var action_icons : Array[Texture] = [] : set = set_action_icons
 @export var action : String = "" : set = set_action
 @export_range(0, 99, 1, "or_greater") var cost : int = 0 : set = set_cost
 @export var linked_area : InteractionArea
 
 @onready var action_label = %ActionLabel
+@onready var action_icon = %ActionIcon
 @onready var cost_label = %CostLabel
 @onready var cost_section = %CostSection
 @onready var flash_color = %FlashColor
@@ -31,7 +33,7 @@ func _ready() -> void:
 	touch_button.pressed.connect(_on_touch_button_pressed)
 
 func flash() -> void:
-	flash_color.modulate.a = 1.0
+	flash_color.modulate.a = 0.5
 	if flash_tween: flash_tween.kill()
 	flash_tween = create_tween()
 	flash_tween.tween_property(flash_color, "modulate:a", 0.0, 0.3)
@@ -40,6 +42,12 @@ func sync_touch_button_size() -> void:
 	touch_button.shape = RectangleShape2D.new()
 	touch_button.shape.size = size
 	touch_button.position = size / 2.0
+
+func update_action_icon(texture_idx : int) -> void:
+	if texture_idx >= 0:
+		action_icon.texture = action_icons[texture_idx]
+	else:
+		action_icon.texture = null
 
 
 # SETTERS ----------------------------------------------------------------------
@@ -58,6 +66,15 @@ func set_cost(value : int) -> void:
 func set_disabled(state : bool) -> void:
 	disabled = state
 	disable_overlay.visible = disabled
+
+func set_action_icons(arr : Array[Texture]) -> void:
+	action_icons = arr
+	if not %ActionIcon.is_node_ready():
+		await %ActionIcon.ready
+	if not action_icons.is_empty():
+		%ActionIcon.texture = action_icons[0]
+	else:
+		%ActionIcon.texture = null
 
 
 # SIGNALS ----------------------------------------------------------------------

@@ -44,20 +44,6 @@ size_flags_vertical = 8
 texture = ExtResource("3_vq7s3")
 stretch_mode = 3
 
-[node name="FxContainer" type="MarginContainer" parent="."]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-theme_override_constants/margin_left = 1
-theme_override_constants/margin_top = 1
-theme_override_constants/margin_right = 1
-theme_override_constants/margin_bottom = 1
-
-[node name="FlashColor" type="ColorRect" parent="FxContainer"]
-unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 0
@@ -71,11 +57,20 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 0
 
-[node name="ActionLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="ActionLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "HIRE"
 label_settings = ExtResource("4_7litb")
+
+[node name="ActionIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+stretch_mode = 5
 
 [node name="CostSection" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -91,6 +86,19 @@ text = "0"
 label_settings = ExtResource("4_7litb")
 
 [node name="CoinIcon" parent="MarginContainer/VBoxContainer/CostSection" instance=ExtResource("5_1knwg")]
+layout_mode = 2
+
+[node name="FxContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="FlashColor" type="ColorRect" parent="FxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="DisableOverlay" type="ColorRect" parent="."]
