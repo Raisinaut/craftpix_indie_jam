@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://4tqlqg22tbpw"]
 
 [ext_resource type="Script" uid="uid://bdcab4qeqp8eb" path="res://entities/projectiles/linear_projectile.gd" id="1_d7ycy"]
-[ext_resource type="PackedScene" uid="uid://cw5nvw3ycioxa" path="res://entities/shadow.tscn" id="2_gdlky"]
+[ext_resource type="PackedScene" uid="uid://cw5nvw3ycioxa" path="res://entities/shadow/shadow.tscn" id="2_gdlky"]
 [ext_resource type="Texture2D" uid="uid://b7bdq3xwqi6iu" path="res://assets/objects/traps/ballista/arrow.png" id="2_sadbq"]
 [ext_resource type="Script" uid="uid://dfc5d2tb3beke" path="res://general/components/combat/hitbox.gd" id="3_cmigs"]
 

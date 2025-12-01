@@ -1,12 +1,16 @@
-[gd_scene load_steps=42 format=3 uid="uid://c5mdvfauoed2g"]
+[gd_scene load_steps=46 format=3 uid="uid://c5mdvfauoed2g"]
 
 [ext_resource type="Script" uid="uid://bhl2hoq3jpxul" path="res://entities/traps/ballista/ballista.gd" id="1_8qoty"]
-[ext_resource type="PackedScene" uid="uid://cw5nvw3ycioxa" path="res://entities/shadow.tscn" id="3_be8nh"]
+[ext_resource type="PackedScene" uid="uid://cw5nvw3ycioxa" path="res://entities/shadow/shadow.tscn" id="3_be8nh"]
 [ext_resource type="Texture2D" uid="uid://1q0cp7khrn5k" path="res://assets/objects/traps/ballista/ballista_sheet.png" id="3_eovqc"]
 [ext_resource type="Script" uid="uid://c8uivfcveinjf" path="res://entities/traps/ballista/emitter.gd" id="6_eovqc"]
 [ext_resource type="Script" uid="uid://b545io1mgm2pc" path="res://general/components/interaction_area/interaction_area.gd" id="6_uwgnx"]
 [ext_resource type="PackedScene" uid="uid://pfvy78ys0l41" path="res://ui/interact_prompt/interact_prompt.tscn" id="7_0yw4s"]
 [ext_resource type="PackedScene" uid="uid://4tqlqg22tbpw" path="res://entities/projectiles/arrow.tscn" id="7_be8nh"]
+[ext_resource type="Texture2D" uid="uid://cnxxrbmr86toy" path="res://assets/ui/icons/interaction/direction_icon1.png" id="8_fqace"]
+[ext_resource type="Texture2D" uid="uid://brlxk7e631ge8" path="res://assets/ui/icons/interaction/direction_icon2.png" id="9_hruim"]
+[ext_resource type="Texture2D" uid="uid://cj2f0lkj2hh2v" path="res://assets/ui/icons/interaction/direction_icon3.png" id="10_sdu47"]
+[ext_resource type="Texture2D" uid="uid://c8an3fb604cgo" path="res://assets/ui/icons/interaction/direction_icon4.png" id="11_v85ik"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kmdvo"]
 atlas = ExtResource("3_eovqc")
@@ -281,6 +285,9 @@ radius = 4.0
 [node name="Ballista" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_8qoty")
+interaction_states = [Vector2(1, 0), Vector2(0, 1), Vector2(-1, 0), Vector2(0, -1)]
+active_interval_tiers = [1.5]
+active_duration_tiers = [0.0]
 
 [node name="Shadow" parent="." instance=ExtResource("3_be8nh")]
 frame = 1
@@ -307,13 +314,11 @@ metadata/_custom_type_script = "uid://b545io1mgm2pc"
 shape = SubResource("CircleShape2D_x8jmv")
 
 [node name="InteractCost" parent="." node_paths=PackedStringArray("linked_area") instance=ExtResource("7_0yw4s")]
-offset_left = -21.5
+offset_left = -22.0
 offset_top = -33.0
-offset_right = 21.5
+offset_right = 22.0
 offset_bottom = -10.0
 size_flags_vertical = 1
-action = "ROTATE"
+action_icons = Array[Texture]([ExtResource("8_fqace"), ExtResource("9_hruim"), ExtResource("10_sdu47"), ExtResource("11_v85ik")])
+action = "TURN"
 linked_area = NodePath("../InteractionArea")
-
-[node name="DirectionVisual" type="RayCast2D" parent="."]
-target_position = Vector2(16, 0)

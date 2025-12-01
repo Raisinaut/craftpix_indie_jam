@@ -1,7 +1,7 @@
 [gd_scene load_steps=26 format=3 uid="uid://bsov43rgqch03"]
 
 [ext_resource type="Script" uid="uid://dx38fb3a80bhu" path="res://entities/characters/moving_character.gd" id="1_dsbbn"]
-[ext_resource type="PackedScene" uid="uid://cw5nvw3ycioxa" path="res://entities/shadow.tscn" id="2_3sq6u"]
+[ext_resource type="PackedScene" uid="uid://cw5nvw3ycioxa" path="res://entities/shadow/shadow.tscn" id="2_3sq6u"]
 [ext_resource type="Texture2D" uid="uid://4cqetk3v1sli" path="res://assets/free-top-down-roguelike-game-kit-pixel-art-craftpix-net-436971/1 Characters/2 Warrior/2.png" id="2_kbhq2"]
 [ext_resource type="Material" uid="uid://b4b6osjxjlwh1" path="res://general/materials/flash_color.tres" id="3_3sq6u"]
 [ext_resource type="Script" uid="uid://dlp6me6jd1osa" path="res://general/components/combat/stats.gd" id="3_62ek5"]

@@ -16,7 +16,7 @@ func _ready() -> void:
 	door.fully_opened.connect(_on_door_fully_opened)
 
 func _process(_delta: float) -> void:
-	interact_prompt.visible = interaction_area.can_interact()
+	interact_prompt.visible = interaction_area.can_interact
 	interact_prompt.disabled = not GameManager.can_afford(use_cost)
 
 func spawn() -> Node2D:

@@ -2,6 +2,7 @@
 class_name InteractPrompt
 extends PanelContainer
 
+## Useful for representing the interaction state of the object.
 @export var action_icons : Array[Texture] = [] : set = set_action_icons
 @export var action : String = "" : set = set_action
 @export_range(0, 99, 1, "or_greater") var cost : int = 0 : set = set_cost
@@ -44,18 +45,30 @@ func sync_touch_button_size() -> void:
 	touch_button.position = size / 2.0
 
 func update_action_icon(texture_idx : int) -> void:
-	if texture_idx >= 0:
-		action_icon.texture = action_icons[texture_idx]
-	else:
+	if texture_idx < 0 or action_icons.is_empty():
 		action_icon.texture = null
+	elif texture_idx >= 0:
+		action_icon.texture = action_icons[texture_idx]
 
+func recenter_horizontal() -> void:
+	size.x = 0
+	position.x = -size.x / 2.0
 
 # SETTERS ----------------------------------------------------------------------
 func set_action(value : String) -> void:
 	action = value
 	%ActionLabel.text = action
-	size.x = 0
-	position.x = -size.x / 2.0
+	recenter_horizontal()
+
+func set_action_icons(arr : Array[Texture]) -> void:
+	action_icons = arr
+	if not %ActionIcon.is_node_ready():
+		await %ActionIcon.ready
+	if not action_icons.is_empty():
+		%ActionIcon.texture = action_icons[0]
+	else:
+		%ActionIcon.texture = null
+	recenter_horizontal()
 
 func set_cost(value : int) -> void:
 	cost = value
@@ -66,15 +79,6 @@ func set_cost(value : int) -> void:
 func set_disabled(state : bool) -> void:
 	disabled = state
 	disable_overlay.visible = disabled
-
-func set_action_icons(arr : Array[Texture]) -> void:
-	action_icons = arr
-	if not %ActionIcon.is_node_ready():
-		await %ActionIcon.ready
-	if not action_icons.is_empty():
-		%ActionIcon.texture = action_icons[0]
-	else:
-		%ActionIcon.texture = null
 
 
 # SIGNALS ----------------------------------------------------------------------

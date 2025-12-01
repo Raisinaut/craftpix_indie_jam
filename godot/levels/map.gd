@@ -25,6 +25,7 @@ func _ready() -> void:
 	ground.z_index = -10
 	highlight_box.z_index = 1
 	ground.update_track_tiles()
+	traps.child_registered.connect(_on_traps_child_registered)
 
 func _process(delta: float) -> void:
 	update_hover()
@@ -87,6 +88,12 @@ func get_highlighted_scene() -> PackedScene:
 	var scene_collection : TileSetScenesCollectionSource = trap_tiles.get_source(0)
 	var trap = scene_collection.get_scene_tile_scene(tile_idx)
 	return trap
+
+
+# SIGNALS ----------------------------------------------------------------------
+func _on_traps_child_registered(child) -> void:
+	# Enable traps when they are placed on the trap layer
+	child.enabled = true
 
 
 # SETUP ------------------------------------------------------------------------

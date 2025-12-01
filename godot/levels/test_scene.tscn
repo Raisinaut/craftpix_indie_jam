@@ -1,10 +1,10 @@
-[gd_scene load_steps=37 format=4 uid="uid://b13vwyaewc6tm"]
+[gd_scene load_steps=38 format=4 uid="uid://b13vwyaewc6tm"]
 
 [ext_resource type="PackedScene" uid="uid://yjjkhh7sb3m" path="res://general/debug/debug_menu.tscn" id="1_6gk0q"]
 [ext_resource type="PackedScene" uid="uid://b7gh3a6eb03y0" path="res://ui/resource_display/resource_display.tscn" id="1_a47p7"]
 [ext_resource type="Script" uid="uid://857d3xpx3leu" path="res://levels/level.gd" id="1_xaem1"]
 [ext_resource type="FontFile" uid="uid://dvvpbm6cwnrjq" path="res://assets/fonts/Pixelify_Sans/static/PixelifySans-Regular.ttf" id="2_0o44c"]
-[ext_resource type="PackedScene" uid="uid://dy700bwdrorh4" path="res://entities/characters/player.tscn" id="2_0wynk"]
+[ext_resource type="PackedScene" uid="uid://dy700bwdrorh4" path="res://entities/characters/player/player.tscn" id="2_0wynk"]
 [ext_resource type="PackedScene" uid="uid://bqwtq0th0xf8r" path="res://ui/trap_selection/trap_selection.tscn" id="2_f3iph"]
 [ext_resource type="Script" uid="uid://ixlv8o45pmwu" path="res://levels/map.gd" id="2_vrunm"]
 [ext_resource type="Script" uid="uid://bmmeaqfs15cos" path="res://levels/intro_prompt.gd" id="3_wn8u6"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://boe036gwnmlsi" path="res://levels/ground.gd" id="12_07ypr"]
 [ext_resource type="PackedScene" uid="uid://b3bvpi5igruyf" path="res://entities/objects/treasure/treasure.tscn" id="13_cnwds"]
 [ext_resource type="TileSet" uid="uid://2pm5bpptx8us" path="res://tilesets/dungeon_walls.tres" id="14_517cg"]
+[ext_resource type="Script" uid="uid://o2n10ww73v8c" path="res://levels/scene_tile_map_layer.gd" id="15_6n8p7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wn8u6"]
 font = ExtResource("2_0o44c")
@@ -181,6 +182,7 @@ tile_set = ExtResource("11_sqy2y")
 [node name="Traps" type="TileMapLayer" parent="Map"]
 y_sort_enabled = true
 tile_set = SubResource("TileSet_vehgu")
+script = ExtResource("15_6n8p7")
 
 [node name="TrapsHover" type="TileMapLayer" parent="Map"]
 y_sort_enabled = true
