@@ -1,8 +1,8 @@
 [gd_scene load_steps=18 format=3 uid="uid://dcmfqyxtr4oty"]
 
-[ext_resource type="Texture2D" uid="uid://bslbu0amb0est" path="res://assets/objects/coin.png" id="1_a3cx1"]
+[ext_resource type="Texture2D" uid="uid://bslbu0amb0est" path="res://assets/objects/coin/coin.png" id="1_a3cx1"]
 [ext_resource type="Script" uid="uid://yp2hpa3ppdmb" path="res://entities/objects/coin/coin.gd" id="1_bnwvg"]
-[ext_resource type="Texture2D" uid="uid://dkexny4e78lr7" path="res://assets/particles/sparkle_a.png" id="2_mwj88"]
+[ext_resource type="Texture2D" uid="uid://dkexny4e78lr7" path="res://assets/particles/sparkle.png" id="2_mwj88"]
 [ext_resource type="PackedScene" uid="uid://cw5nvw3ycioxa" path="res://entities/shadow/shadow.tscn" id="3_3kpim"]
 [ext_resource type="Material" uid="uid://b1tly5c16uths" path="res://general/materials/flash_pickup.tres" id="4_vxmcp"]
 [ext_resource type="Script" uid="uid://d2d8j0k3b1vi2" path="res://general/components/flashing_sprite/flash_control.gd" id="6_3kpim"]

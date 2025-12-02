@@ -31,8 +31,8 @@ func _process(delta: float) -> void:
 			path_end_reached.emit()
 			movers.erase(i)
 			i.queue_free()
-	#spawn_interval -= interval_reduction_rate * delta
-	#spawn_interval = clamp(spawn_interval, min_interval, max_interval)
+	spawn_interval -= interval_reduction_rate * delta
+	spawn_interval = clamp(spawn_interval, min_interval, max_interval)
 
 func add_follower() -> void:
 	# create new path

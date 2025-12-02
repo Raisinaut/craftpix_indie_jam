@@ -2,7 +2,6 @@ class_name InteractableMap
 extends Node2D
 
 @onready var ground = $Ground
-@onready var holes = $Holes
 @onready var traps = $Traps
 @onready var traps_hover = $TrapsHover
 @onready var highlight_box = $Ground/HighlightBox
@@ -92,7 +91,7 @@ func get_highlighted_scene() -> PackedScene:
 
 # SIGNALS ----------------------------------------------------------------------
 func _on_traps_child_registered(child) -> void:
-	# Enable traps when they are placed on the trap layer
+	# Enable traps after they are placed on the trap layer
 	child.enabled = true
 
 

@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 GameManager="*res://managers/game_manager.tscn"
 EntityManager="*res://managers/entity_manager.tscn"
-TrapManager="*res://managers/TrapManager.tscn"
+TrapManager="*res://managers/trap_manager.tscn"
 
 [debug]
 
@@ -91,6 +91,7 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_2="friendly"
 2d_physics/layer_3="enemy"
 2d_physics/layer_4="player"
+2d_physics/layer_5="hole"
 
 [navigation]
 

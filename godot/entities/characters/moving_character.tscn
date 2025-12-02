@@ -349,6 +349,7 @@ _data = {
 
 [node name="MovingCharacter" type="CharacterBody2D"]
 collision_layer = 0
+collision_mask = 17
 script = ExtResource("1_dsbbn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

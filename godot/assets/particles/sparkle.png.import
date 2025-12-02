@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://q0txmws1rxrh"
-path="res://.godot/imported/coin3.png-874b05126e841189cfd8c472defd48a0.ctex"
+uid="uid://dkexny4e78lr7"
+path="res://.godot/imported/sparkle.png-671e45b6bbae76cef43151eca3c1b48b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/objects/coin3.png"
-dest_files=["res://.godot/imported/coin3.png-874b05126e841189cfd8c472defd48a0.ctex"]
+source_file="res://assets/particles/sparkle.png"
+dest_files=["res://.godot/imported/sparkle.png-671e45b6bbae76cef43151eca3c1b48b.ctex"]
 
 [params]
 

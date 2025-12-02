@@ -181,9 +181,9 @@ metadata/_custom_type_script = "uid://b545io1mgm2pc"
 shape = SubResource("CircleShape2D_x8jmv")
 
 [node name="InteractCost" parent="." node_paths=PackedStringArray("linked_area") instance=ExtResource("7_x8jmv")]
-offset_left = 0.0
+offset_left = -21.5
 offset_top = -33.0
-offset_right = 0.0
+offset_right = 21.5
 offset_bottom = -10.0
 size_flags_vertical = 1
 action_icons = Array[Texture]([ExtResource("8_i7lgh"), ExtResource("9_mdnyf")])

@@ -16,5 +16,5 @@ func update_track_tiles() -> void:
 		if not track_tiles.has(map_pos):
 			track_tiles.append(map_pos)
 		sample_offset += change_interval
-	set_cells_terrain_path(track_tiles, 1, 0)
+	set_cells_terrain_path(track_tiles, 0, 1)
 	

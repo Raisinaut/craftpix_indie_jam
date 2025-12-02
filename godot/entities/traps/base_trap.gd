@@ -8,7 +8,6 @@ extends Node2D
 @export var active_interval_tiers : Array = [1.0]
 ## How long activity lasts.
 @export var active_duration_tiers : Array = [2.0]
-@export var activate_on_enable : bool = true
 
 @onready var interaction_area : InteractionArea = $InteractionArea
 @onready var interact_display : InteractPrompt = $InteractCost
@@ -16,8 +15,12 @@ extends Node2D
 var interaction_state_idx = 0 : set = set_interaction_state_idx
 var active : bool = false : set = set_active
 var enabled : bool = false : set = set_enabled
+var activate_on_enable : bool = true
 var activity_timer : SceneTreeTimer = null
-var tier : int = 1
+var tiers : Dictionary[String, int] = {
+	"interval" : 1,
+	"duration" : 1,
+}
 
 
 func _ready() -> void:
@@ -28,8 +31,6 @@ func _ready() -> void:
 	interact_display.hide()
 	_connect_signals()
 
-func get_current_tier() -> int:
-	return tier
 
 # OVERRIDES --------------------------------------------------------------------
 func _on_activate() -> void:
@@ -93,13 +94,15 @@ func _on_can_interact_changed(state : bool) -> void:
 # TIMERS -----------------------------------------------------------------------
 func start_active_interval():
 	set_active(false)
-	var timer_duration = active_interval_tiers[get_current_tier() - 1]
+	var interval_tier_idx : int = tiers["interval"] - 1
+	var timer_duration = active_interval_tiers[interval_tier_idx]
 	activity_timer = get_tree().create_timer(timer_duration)
 	activity_timer.timeout.connect(_on_active_interval_timeout)
 
 func start_active_duration():
 	set_active(true)
-	var timer_duration = active_duration_tiers[get_current_tier() - 1]
+	var duration_tier_idx : int = tiers["duration"] - 1
+	var timer_duration = active_duration_tiers[duration_tier_idx]
 	activity_timer = get_tree().create_timer(timer_duration)
 	activity_timer.timeout.connect(_on_active_duration_timeout)
 
