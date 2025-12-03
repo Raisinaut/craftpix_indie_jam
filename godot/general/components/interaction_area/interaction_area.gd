@@ -33,8 +33,7 @@ func set_can_interact(state : bool) -> void:
 # CHECKS -----------------------------------------------------------------------
 func update_can_interact() -> void:
 	var has_player = not nodes_in_area.is_empty()
-	var player_not_busy = not GameManager.player_is_busy()
-	can_interact = has_player and player_not_busy
+	can_interact = has_player
 
 
 # SIGNALS ----------------------------------------------------------------------

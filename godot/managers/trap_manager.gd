@@ -24,6 +24,9 @@ func get_trap_data_for_scene(trap_scene) -> TrapData:
 			break
 	return data
 
+func get_data_for_instance(inst : BaseTrap) -> TrapData:
+	var scene = load(inst.scene_file_path)
+	return get_trap_data_for_scene(scene)
 
 # GENERAL ----------------------------------------------------------------------
 func populate_data_list(data_list : Array):
@@ -53,27 +56,37 @@ func populate_data_list(data_list : Array):
 
 
 # TIERS ------------------------------------------------------------------------
-
 func reset_tiers(trap : BaseTrap) -> void:
-	var scene = load(trap.scene_file_path)
-	var data = get_trap_data_for_scene(scene)
+	var data = get_data_for_instance(trap)
 	for p in data.upgradeable_properties:
-		var property_name = data.get(p)
-		if trap.get(property_name) != null:
-			var tiers = get_tiers(data.get_type_string(), data.display_name, p)
-			var max_idx = tiers.size() - 1
-			var value = tiers[min(0, max_idx)]
-			trap.set(property_name, value)
-		else:
-			#push_warning("Property \"" + property_name + "\" \
-			#does not exist in " + str(trap))
-			pass
+		set_tier_idx(trap, p, 0)
 
-func get_tier_value(tp : String, nm : String, pr: String, tier : int) -> Variant:
-	return weapon_tiers[tp][nm][pr][tier]
+func set_tier_idx(trap : BaseTrap, property : String, tier_idx : int) -> void:
+	var data = get_data_for_instance(trap)
+	var tiers = get_tiers(data.get_type_string(), data.display_name, property)
+	if tiers:
+		var full_property_name = data.get(property)
+		var max_tier = tiers.size() - 1
+		var value = tiers[min(tier_idx, max_tier)]
+		trap.set(full_property_name, value)
+	else:
+		#push_warning("Property \"" + property_name + "\" \
+		#does not exist in " + str(trap))
+		pass
 
-func get_tiers(tp : String, nm : String, pr : String) -> Array:
-	return weapon_tiers[tp][nm][pr]
+## Returns an array of tier values for the given property.
+func get_tiers(type : String, trap_name : String, property : String) -> Array:
+	return weapon_tiers[type][trap_name][property]
+
+## Returns the given property's tier index.
+func get_tier_index(trap : BaseTrap, property : String) -> int:
+	# get current property value
+	var data = get_data_for_instance(trap)
+	var full_property_name = data.get(property)
+	var property_value = trap.get(full_property_name)
+	# get that value's tier index
+	var tiers = get_tiers(data.get_type_string(), data.display_name, property)
+	return tiers.find(property_value)
 
 
 # JSON -------------------------------------------------------------------------
@@ -90,7 +103,8 @@ func parse_json(json_string):
 		else:
 			print("Unexpected data")
 	else:
-		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+		print("JSON Parse Error: ", json.get_error_message(), \
+		" in ", json_string, " at line ", json.get_error_line())
 
 func load_from_file(path : String):
 	var file = FileAccess.open(path, FileAccess.READ)

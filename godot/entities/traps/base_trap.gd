@@ -1,6 +1,8 @@
 class_name BaseTrap
 extends Node2D
 
+signal charge_updated
+
 ## The values cycled between when the trap is interacted with.[br]
 ## These could represent rotations, spin directions, etc.
 @export var interaction_states : Array[Variant] = []
@@ -28,6 +30,21 @@ func _ready() -> void:
 	interact_display.hide()
 	_connect_signals()
 	TrapManager.reset_tiers(self)
+
+
+func _process(delta: float) -> void:
+	charge_updated.emit(get_charge())
+
+func get_charge() -> float:
+	if not activity_timer:
+		return 0.0
+	var charge : float = 0.0
+	var timer_length = active_duration if active else active_interval
+	if timer_length != 0:
+		charge = activity_timer.time_left / timer_length
+	if not active:
+		charge = 1.0 - charge
+	return charge
 
 
 # OVERRIDES --------------------------------------------------------------------

@@ -66,9 +66,6 @@ func get_resource_icon_frames(resource_name : String) -> Array:
 func can_afford(amount : int) -> bool:
 	return amount <= currency
 
-func player_is_busy() -> bool:
-	return player.is_busy()
-
 
 # NODE ACCESS ------------------------------------------------------------------
 func get_stash_position() -> Vector2:

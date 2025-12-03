@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://c5mdvfauoed2g"]
+[gd_scene load_steps=47 format=3 uid="uid://c5mdvfauoed2g"]
 
 [ext_resource type="Script" uid="uid://bhl2hoq3jpxul" path="res://entities/traps/ballista/ballista.gd" id="1_8qoty"]
 [ext_resource type="PackedScene" uid="uid://cw5nvw3ycioxa" path="res://entities/shadow/shadow.tscn" id="3_be8nh"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://brlxk7e631ge8" path="res://assets/ui/icons/interaction/direction/direction_icon2.png" id="9_hruim"]
 [ext_resource type="Texture2D" uid="uid://cj2f0lkj2hh2v" path="res://assets/ui/icons/interaction/direction/direction_icon3.png" id="10_sdu47"]
 [ext_resource type="Texture2D" uid="uid://c8an3fb604cgo" path="res://assets/ui/icons/interaction/direction/direction_icon4.png" id="11_v85ik"]
+[ext_resource type="PackedScene" uid="uid://dptkd85ey5q80" path="res://general/components/combat/meter_indicator.tscn" id="12_hruim"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kmdvo"]
 atlas = ExtResource("3_eovqc")
@@ -322,3 +323,13 @@ size_flags_vertical = 1
 action_icons = Array[Texture]([ExtResource("8_fqace"), ExtResource("9_hruim"), ExtResource("10_sdu47"), ExtResource("11_v85ik")])
 action = "TURN"
 linked_area = NodePath("../InteractionArea")
+
+[node name="MeterIndicator" parent="." node_paths=PackedStringArray("signal_node") instance=ExtResource("12_hruim")]
+z_index = 10
+offset_left = -5.0
+offset_top = 3.0
+offset_right = 5.0
+offset_bottom = 7.0
+tint_progress = Color(2.5027991e-06, 0.7423055, 0.9326141, 1)
+signal_node = NodePath("..")
+update_signal = "charge_updated"

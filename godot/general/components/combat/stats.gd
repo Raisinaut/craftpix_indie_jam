@@ -4,7 +4,7 @@ extends Node2D
 signal hp_depleted
 signal hp_gained
 signal hp_lost
-signal hp_changed(hp_value)
+signal hp_changed(hp_percent)
 
 signal stamina_changed
 signal stamina_depleted
@@ -32,7 +32,7 @@ func set_hp(value) -> void:
 		hp_lost.emit()
 	elif value > original_hp:
 		hp_gained.emit()
-	hp_changed.emit(hp)
+	hp_changed.emit(get_hp_percent())
 	
 	if hp <= 0:
 		hp_depleted.emit()
@@ -50,7 +50,7 @@ func set_stamina(value) -> void:
 		return
 	value = clamp(value, 0, max_stamina)
 	stamina = value
-	stamina_changed.emit(stamina)
+	stamina_changed.emit(get_stamina_percent())
 	if stamina <= 0:
 		stamina_depleted.emit()
 

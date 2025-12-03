@@ -382,10 +382,11 @@ metadata/_custom_type_script = "uid://dlp6me6jd1osa"
 script = ExtResource("3_jou4o")
 stats = NodePath("../Stats")
 
-[node name="MeterIndicator" parent="." node_paths=PackedStringArray("stats") instance=ExtResource("4_2ixtm")]
+[node name="MeterIndicator" parent="." node_paths=PackedStringArray("signal_node") instance=ExtResource("4_2ixtm")]
 offset_left = -8.0
 offset_top = -19.0
 offset_right = 8.0
 offset_bottom = -15.0
-stats = NodePath("../Stats")
+signal_node = NodePath("../Stats")
+update_signal = "hp_changed"
 metadata/_edit_use_anchors_ = true

@@ -52,4 +52,4 @@ unlimited_stamina = false
 
 [node name="MeterIndicator" parent="." index="7"]
 tint_progress = Color(0.3882353, 0.78039217, 0.3019608, 1)
-tracking_stat = "stamina"
+update_signal = "stamina_changed"

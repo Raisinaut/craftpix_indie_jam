@@ -1,7 +1,7 @@
 extends TextureProgressBar
 
-@export var stats : Stats
-@export var tracking_stat : String = "hp"
+@export var signal_node : Node
+@export var update_signal : String = ""
 
 @onready var visibility_timer : Timer = $VisiblityTimer
 @onready var progress_cap : ColorRect = $ProgressCap
@@ -12,21 +12,29 @@ func _ready() -> void:
 	hide()
 	value_changed.connect(_on_value_changed)
 	visibility_timer.timeout.connect(_on_visibility_timer_timeout)
-	stats.connect(tracking_stat + "_changed", _on_stat_changed)
+	if signal_node and update_signal:
+		signal_node.connect(update_signal, _update)
 
-func _on_stat_changed(_hp) -> void:
+func _update(new_value) -> void:
 	show()
+	#show()
 	fade(1.0, 0)
-	value = Callable(stats, "get_" + tracking_stat + "_percent").call()
 	#visibility_timer.start()
+	set_progress(new_value)
+
+func set_progress(p : float) -> void:
+	value = clamp(p, 0.0, 1.0)
 
 func _on_visibility_timer_timeout() -> void:
 	fade(0.0, 1.0)
 
-func _on_value_changed(new_value : float) -> void:
+func _on_value_changed(_new_value : float) -> void:
+	update_progress_cap_position()
+
+func update_progress_cap_position() -> void:
 	var min_cap_pos : float = 0.0
 	var max_cap_pos : float = size.x - 1
-	progress_cap.position.x = lerp(min_cap_pos, max_cap_pos, new_value)
+	progress_cap.position.x = lerp(min_cap_pos, max_cap_pos, value)
 
 func fade(alpha : float, duration) -> void:
 	if fade_tween: fade_tween.kill()

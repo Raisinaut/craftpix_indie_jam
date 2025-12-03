@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://lmebpt6opvja"]
+[gd_scene load_steps=31 format=3 uid="uid://lmebpt6opvja"]
 
 [ext_resource type="Script" uid="uid://bhmugkt112es3" path="res://entities/traps/fire_trap/fire_trap.gd" id="1_4vp1b"]
 [ext_resource type="Texture2D" uid="uid://cw6cmeriakret" path="res://assets/objects/traps/fire_trap/fire_trap.png" id="1_uigei"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://pfvy78ys0l41" path="res://ui/interact_prompt/interact_prompt.tscn" id="7_x8jmv"]
 [ext_resource type="Texture2D" uid="uid://v5npgqape5sf" path="res://assets/ui/icons/interaction/rotation/rotation1.png" id="8_i7lgh"]
 [ext_resource type="Texture2D" uid="uid://dud3uj6lcum55" path="res://assets/ui/icons/interaction/rotation/rotation2.png" id="9_mdnyf"]
+[ext_resource type="PackedScene" uid="uid://dptkd85ey5q80" path="res://general/components/combat/meter_indicator.tscn" id="10_mdnyf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4vp1b"]
 atlas = ExtResource("1_uigei")
@@ -189,3 +190,13 @@ size_flags_vertical = 1
 action_icons = Array[Texture]([ExtResource("8_i7lgh"), ExtResource("9_mdnyf")])
 action = "FLIP"
 linked_area = NodePath("../InteractionArea")
+
+[node name="MeterIndicator" parent="." node_paths=PackedStringArray("signal_node") instance=ExtResource("10_mdnyf")]
+z_index = 10
+offset_left = -5.0
+offset_top = 5.0
+offset_right = 5.0
+offset_bottom = 9.0
+tint_progress = Color(0, 0.7411765, 0.93333334, 1)
+signal_node = NodePath("..")
+update_signal = "charge_updated"
