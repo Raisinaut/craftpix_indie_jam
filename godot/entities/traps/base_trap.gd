@@ -4,10 +4,11 @@ extends Node2D
 ## The values cycled between when the trap is interacted with.[br]
 ## These could represent rotations, spin directions, etc.
 @export var interaction_states : Array[Variant] = []
+
 ## The times between activations.
-@export var active_interval_tiers : Array = [1.0]
+@export var active_interval : float = 1.0
 ## How long activity lasts.
-@export var active_duration_tiers : Array = [2.0]
+@export var active_duration : float = 2.0
 
 @onready var interaction_area : InteractionArea = $InteractionArea
 @onready var interact_display : InteractPrompt = $InteractCost
@@ -17,10 +18,6 @@ var active : bool = false : set = set_active
 var enabled : bool = false : set = set_enabled
 var activate_on_enable : bool = true
 var activity_timer : SceneTreeTimer = null
-var tiers : Dictionary[String, int] = {
-	"interval" : 1,
-	"duration" : 1,
-}
 
 
 func _ready() -> void:
@@ -30,6 +27,7 @@ func _ready() -> void:
 	interaction_area.can_interact_changed.connect(_on_can_interact_changed)
 	interact_display.hide()
 	_connect_signals()
+	TrapManager.reset_tiers(self)
 
 
 # OVERRIDES --------------------------------------------------------------------
@@ -94,16 +92,12 @@ func _on_can_interact_changed(state : bool) -> void:
 # TIMERS -----------------------------------------------------------------------
 func start_active_interval():
 	set_active(false)
-	var interval_tier_idx : int = tiers["interval"] - 1
-	var timer_duration = active_interval_tiers[interval_tier_idx]
-	activity_timer = get_tree().create_timer(timer_duration)
+	activity_timer = get_tree().create_timer(active_interval)
 	activity_timer.timeout.connect(_on_active_interval_timeout)
 
 func start_active_duration():
 	set_active(true)
-	var duration_tier_idx : int = tiers["duration"] - 1
-	var timer_duration = active_duration_tiers[duration_tier_idx]
-	activity_timer = get_tree().create_timer(timer_duration)
+	activity_timer = get_tree().create_timer(active_duration)
 	activity_timer.timeout.connect(_on_active_duration_timeout)
 
 func cancel_activity_timer() -> void:

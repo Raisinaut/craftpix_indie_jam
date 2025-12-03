@@ -7,10 +7,10 @@
 [ext_resource type="Script" uid="uid://b545io1mgm2pc" path="res://general/components/interaction_area/interaction_area.gd" id="6_uwgnx"]
 [ext_resource type="PackedScene" uid="uid://pfvy78ys0l41" path="res://ui/interact_prompt/interact_prompt.tscn" id="7_0yw4s"]
 [ext_resource type="PackedScene" uid="uid://4tqlqg22tbpw" path="res://entities/projectiles/arrow.tscn" id="7_be8nh"]
-[ext_resource type="Texture2D" uid="uid://cnxxrbmr86toy" path="res://assets/ui/icons/interaction/direction_icon1.png" id="8_fqace"]
-[ext_resource type="Texture2D" uid="uid://brlxk7e631ge8" path="res://assets/ui/icons/interaction/direction_icon2.png" id="9_hruim"]
-[ext_resource type="Texture2D" uid="uid://cj2f0lkj2hh2v" path="res://assets/ui/icons/interaction/direction_icon3.png" id="10_sdu47"]
-[ext_resource type="Texture2D" uid="uid://c8an3fb604cgo" path="res://assets/ui/icons/interaction/direction_icon4.png" id="11_v85ik"]
+[ext_resource type="Texture2D" uid="uid://cnxxrbmr86toy" path="res://assets/ui/icons/interaction/direction/direction_icon1.png" id="8_fqace"]
+[ext_resource type="Texture2D" uid="uid://brlxk7e631ge8" path="res://assets/ui/icons/interaction/direction/direction_icon2.png" id="9_hruim"]
+[ext_resource type="Texture2D" uid="uid://cj2f0lkj2hh2v" path="res://assets/ui/icons/interaction/direction/direction_icon3.png" id="10_sdu47"]
+[ext_resource type="Texture2D" uid="uid://c8an3fb604cgo" path="res://assets/ui/icons/interaction/direction/direction_icon4.png" id="11_v85ik"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kmdvo"]
 atlas = ExtResource("3_eovqc")
@@ -286,8 +286,8 @@ radius = 4.0
 y_sort_enabled = true
 script = ExtResource("1_8qoty")
 interaction_states = [Vector2(1, 0), Vector2(0, 1), Vector2(-1, 0), Vector2(0, -1)]
-active_interval_tiers = [1.5]
-active_duration_tiers = [0.0]
+active_interval = 1.5
+active_duration = 0.0
 
 [node name="Shadow" parent="." instance=ExtResource("3_be8nh")]
 frame = 1

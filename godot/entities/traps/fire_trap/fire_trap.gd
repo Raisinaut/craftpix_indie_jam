@@ -5,9 +5,11 @@ extends BaseTrap
 @onready var generation = $Generation
 @onready var fireballs = $Fireballs
 
+var fireball_count : int = 2
 
 # OVERRIDES --------------------------------------------------------------------
 func _on_activate() -> void:
+	fireballs.entity_count = fireball_count
 	generation.visible = true
 	fireballs.populate_entites()
 	fireballs.expand_entities()

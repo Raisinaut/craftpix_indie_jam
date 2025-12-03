@@ -5,13 +5,16 @@ extends BaseTrap
 @onready var emitter = $Emitter
 
 var direction := Vector2.RIGHT : set = set_direction
-
+var pierce_count : int = 0
+var shots_per_activation : int = 1
 
 # OVERRIDES --------------------------------------------------------------------
 func _on_activate() -> void:
-	sprite.stop()
-	sprite.play(get_directional_animation_name("fire"))
-	emitter.emit()
+	for i in shots_per_activation:
+		sprite.stop()
+		sprite.play(get_directional_animation_name("fire"))
+		emitter.emit()
+		await get_tree().create_timer(0.1).timeout
 
 func _on_deactivate() -> void:
 	await sprite.animation_finished

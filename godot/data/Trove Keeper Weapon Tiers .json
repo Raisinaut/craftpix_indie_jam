@@ -1,0 +1,44 @@
+{
+  "tower": {
+	"Fireburst": {
+	  "interval": [
+		1,
+		0.6
+	  ],
+	  "duration": [
+		2,
+		3
+	  ],
+	  "special_1": [
+		0.5,
+		0.8
+	  ],
+	  "special_2": [
+		2,
+		3,
+		5
+	  ]
+	},
+	"Ballista": {
+	  "interval": [
+		1.5,
+		1,
+		0.5
+	  ],
+	  "duration": [
+		0
+	  ],
+	  "special_1": [
+		0,
+		1,
+		2
+	  ],
+	  "special_2": [
+		1,
+		2,
+		3
+	  ]
+	}
+  },
+  "consumable": {}
+}
