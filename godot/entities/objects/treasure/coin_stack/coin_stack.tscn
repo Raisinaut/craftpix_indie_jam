@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://ieolhn4nh3ys"]
+
+[ext_resource type="Texture2D" uid="uid://ylccn2fvy0ow" path="res://assets/objects/treasure/coin_stack2.png" id="1_1u8ns"]
+[ext_resource type="Script" uid="uid://b6wypaky0ioxx" path="res://entities/objects/treasure/coin_stack/coin_stack.gd" id="1_20iyx"]
+[ext_resource type="Texture2D" uid="uid://bg1o1n8tpsw1y" path="res://assets/objects/treasure/coin_stack1.png" id="2_20iyx"]
+[ext_resource type="PackedScene" uid="uid://cw5nvw3ycioxa" path="res://entities/shadow/shadow.tscn" id="2_gtsxr"]
+[ext_resource type="Script" uid="uid://cudmb4cfwknal" path="res://entities/objects/treasure/coin_stack/offset_coins.gd" id="4_w5kq2"]
+[ext_resource type="Texture2D" uid="uid://yo3me3y6esd5" path="res://assets/objects/treasure/coin_stack3.png" id="5_00brl"]
+
+[node name="CoinStack" type="Node2D"]
+script = ExtResource("1_20iyx")
+metadata/_edit_group_ = true
+
+[node name="Shadow" parent="." instance=ExtResource("2_gtsxr")]
+visible = false
+frame = 0
+size = 1
+
+[node name="Coins" type="Node2D" parent="."]
+script = ExtResource("4_w5kq2")
+offset_coin_texture = ExtResource("5_00brl")
+
+[node name="Middle" type="Sprite2D" parent="."]
+visible = false
+texture_repeat = 2
+texture = ExtResource("1_1u8ns")
+offset = Vector2(0, -1)
+region_enabled = true
+region_rect = Rect2(0, 0, 6, 2)
+
+[node name="Cap" type="Sprite2D" parent="."]
+texture = ExtResource("2_20iyx")
+offset = Vector2(0, -1)

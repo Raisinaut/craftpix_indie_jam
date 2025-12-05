@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+const MAX_WARNING_AMOUNT = 1
+
 @onready var color_vignette : ColorRect = $ColorVignette
 
 @export var warning_curve : Curve
@@ -37,6 +39,7 @@ func set_vignette_opacity(value : float) -> void:
 
 func increase_warning() -> void:
 	var end_amount = warning_amount + warning_raise_rate
+	end_amount = min(end_amount, MAX_WARNING_AMOUNT)
 	if raise_tween: raise_tween.kill()
 	raise_tween = create_tween()
 	raise_tween.tween_property(self, "warning_amount", end_amount, 0.15)

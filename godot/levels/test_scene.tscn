@@ -19,9 +19,9 @@
 [ext_resource type="PackedScene" uid="uid://dbk3p3q8hhi52" path="res://general/camera/shaky_cam.tscn" id="10_vehgu"]
 [ext_resource type="TileSet" uid="uid://c2pfap4oxu8ji" path="res://tilesets/dungeon_floor.tres" id="11_517cg"]
 [ext_resource type="Script" uid="uid://boe036gwnmlsi" path="res://levels/ground.gd" id="12_07ypr"]
-[ext_resource type="PackedScene" uid="uid://b3bvpi5igruyf" path="res://entities/objects/treasure/treasure.tscn" id="13_cnwds"]
 [ext_resource type="TileSet" uid="uid://2pm5bpptx8us" path="res://tilesets/dungeon_walls.tres" id="14_517cg"]
 [ext_resource type="Script" uid="uid://o2n10ww73v8c" path="res://levels/scene_tile_map_layer.gd" id="15_6n8p7"]
+[ext_resource type="PackedScene" uid="uid://b4tmuhrnlk580" path="res://entities/objects/treasure/coin_pile/coin_pile.tscn" id="21_07ypr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wn8u6"]
 font = ExtResource("2_0o44c")
@@ -192,7 +192,7 @@ y_sort_enabled = true
 script = ExtResource("10_200ie")
 
 [node name="Player" parent="Entities" instance=ExtResource("2_0wynk")]
-position = Vector2(83, 44)
+position = Vector2(219, -32)
 
 [node name="EnemyPath" type="Path2D" parent="Entities"]
 y_sort_enabled = true
@@ -207,8 +207,8 @@ position = Vector2(184, 32)
 [node name="MinionDoor" parent="Entities" instance=ExtResource("6_a47p7")]
 position = Vector2(56, -64)
 
+[node name="CoinPile" parent="Entities" instance=ExtResource("21_07ypr")]
+position = Vector2(269, -40)
+
 [node name="ShakyCam" parent="." node_paths=PackedStringArray("target") instance=ExtResource("10_vehgu")]
 target = NodePath("../Entities/Player")
-
-[node name="Stash" parent="." instance=ExtResource("13_cnwds")]
-position = Vector2(268, -40)

@@ -1,6 +1,6 @@
 extends Node
 
-const MAX_CURRENCY = 9999
+const MAX_CURRENCY = 999
 
 signal currency_modified
 signal currency_lost
@@ -40,7 +40,6 @@ func lose_currency(amount : int) -> void:
 func spend_currency(amount : int) -> void:
 	currency -= amount
 	currency_spent.emit()
-
 
 # CHEATS -----------------------------------------------------------------------
 func set_infinite_money(state : bool) -> void:

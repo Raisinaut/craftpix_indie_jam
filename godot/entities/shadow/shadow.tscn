@@ -6,5 +6,7 @@
 [node name="Shadow" type="Sprite2D"]
 modulate = Color(1, 1, 1, 0.4)
 texture = ExtResource("1_bcmcb")
-hframes = 2
+hframes = 3
+frame = 2
 script = ExtResource("2_bcmcb")
+size = 3

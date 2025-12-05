@@ -122,6 +122,8 @@ anim_speed_min = 1.0
 anim_speed_max = 1.0
 
 [node name="Shadow" parent="." instance=ExtResource("3_3kpim")]
+frame = 0
+size = 1
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 material = ExtResource("4_vxmcp")
