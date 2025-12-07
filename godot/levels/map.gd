@@ -55,9 +55,10 @@ func update_highlight():
 		MODES.PLACE:
 			highlight_box.play("place")
 			#highlight_box.visible = is_highlighting()
+			highlight_box.modulate = Color("ffffff")
 			if not is_highlighting():
 				highlight_box.play("default")
-			highlight_box.modulate = Color("ffffff")
+				highlight_box.modulate = Color("f5767a")
 			if not can_place():
 				highlight_box.modulate = Color("f5767a")
 		MODES.REMOVE:

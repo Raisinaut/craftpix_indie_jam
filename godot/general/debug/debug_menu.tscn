@@ -62,7 +62,7 @@ theme_override_constants/separation = 0
 
 [node name="GameSpeedLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Speed x2"
+text = "Speedup"
 label_settings = ExtResource("2_eo4ue")
 
 [node name="GameSpeedButton" type="CheckButton" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -86,3 +86,20 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_styles/focus = SubResource("StyleBoxEmpty_eo4ue")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="MeterVisibilityLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Meters"
+label_settings = ExtResource("2_eo4ue")
+
+[node name="MeterVisibilityButton" type="CheckButton" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_styles/focus = SubResource("StyleBoxEmpty_eo4ue")
+button_pressed = true

@@ -7,6 +7,8 @@ signal currency_lost
 signal currency_spent
 signal currency_gained
 
+signal hide_meters_changed(state)
+
 @export var currency_icon_frames : Array[Texture] = []
 
 var currency : int = 20 : set = set_currency
@@ -17,6 +19,9 @@ var resources : Dictionary = {
 # TRACKED NODES
 var player : PlayerCharacter = null
 var stash : Node2D = null
+
+# OPTIONS
+var hide_meters : bool = false : set = set_hide_meters
 
 # CHEATS
 var infinite_money : bool = false : set = set_infinite_money
@@ -40,6 +45,12 @@ func lose_currency(amount : int) -> void:
 func spend_currency(amount : int) -> void:
 	currency -= amount
 	currency_spent.emit()
+
+
+# OPTIONS ----------------------------------------------------------------------
+func set_hide_meters(state : bool) -> void:
+	hide_meters = state
+	hide_meters_changed.emit(hide_meters)
 
 # CHEATS -----------------------------------------------------------------------
 func set_infinite_money(state : bool) -> void:

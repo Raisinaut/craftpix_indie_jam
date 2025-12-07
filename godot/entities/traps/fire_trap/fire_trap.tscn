@@ -169,8 +169,10 @@ entity_count = 3
 entity_scene = ExtResource("4_dda22")
 
 [node name="Generation" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_5bmfi")
 autoplay = "default"
+offset = Vector2(0, -1)
 
 [node name="InteractionArea" type="Area2D" parent="."]
 collision_layer = 0

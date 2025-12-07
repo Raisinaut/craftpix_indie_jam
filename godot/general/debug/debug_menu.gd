@@ -3,6 +3,7 @@ extends CanvasLayer
 
 @onready var game_speed_button = %GameSpeedButton
 @onready var rich_button = %RichButton
+@onready var meter_visiblity_button = %MeterVisibilityButton
 
 @export var enable_outside_debug : bool = false
 
@@ -12,6 +13,7 @@ var enabled : bool = false : set = set_enabled
 func _ready() -> void:
 	game_speed_button.toggled.connect(_on_game_speed_button_toggled)
 	rich_button.toggled.connect(_on_rich_button_toggled)
+	meter_visiblity_button.toggled.connect(_on_meter_visiblity_button_toggled)
 	#if enable_outside_debug or OS.is_debug_build():
 		#show()
 
@@ -23,6 +25,9 @@ func _on_game_speed_button_toggled(toggled : bool) -> void:
 
 func _on_rich_button_toggled(toggled : bool) -> void:
 	GameManager.infinite_money = toggled
+
+func _on_meter_visiblity_button_toggled(toggled : bool) -> void:
+	GameManager.hide_meters = not toggled
 
 func set_enabled(state : bool) -> void:
 	enabled = state

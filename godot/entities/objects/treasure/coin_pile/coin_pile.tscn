@@ -55,3 +55,9 @@ position = Vector2(7, 0)
 
 [node name="CoinStack17" parent="Stacks" instance=ExtResource("2_kolvi")]
 position = Vector2(0, -1)
+
+[node name="CoinStack23" parent="Stacks" instance=ExtResource("2_kolvi")]
+position = Vector2(-2, -3)
+
+[node name="CoinStack24" parent="Stacks" instance=ExtResource("2_kolvi")]
+position = Vector2(3, -3)
