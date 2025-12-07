@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4tmuhrnlk580"]
+[gd_scene load_steps=5 format=3 uid="uid://b4tmuhrnlk580"]
 
 [ext_resource type="Script" uid="uid://c0681bkoawh8u" path="res://entities/objects/treasure/coin_pile/coin_pile.gd" id="1_03th8"]
 [ext_resource type="PackedScene" uid="uid://ieolhn4nh3ys" path="res://entities/objects/treasure/coin_stack/coin_stack.tscn" id="2_kolvi"]
+
+[sub_resource type="Curve" id="Curve_03th8"]
+_data = [Vector2(0, 0), 0.0, 0.4252873, 0, 0, Vector2(1, 1), 0.294866, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_03th8"]
 radius = 4.0
@@ -9,6 +13,7 @@ height = 24.0
 
 [node name="CoinPile" type="StaticBody2D"]
 script = ExtResource("1_03th8")
+height_curve = SubResource("Curve_03th8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = -1.5707964
@@ -54,7 +59,7 @@ position = Vector2(-6, -2)
 position = Vector2(7, 0)
 
 [node name="CoinStack17" parent="Stacks" instance=ExtResource("2_kolvi")]
-position = Vector2(0, -1)
+position = Vector2(0, -2)
 
 [node name="CoinStack23" parent="Stacks" instance=ExtResource("2_kolvi")]
 position = Vector2(-2, -3)

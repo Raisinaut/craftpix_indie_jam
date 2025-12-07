@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+@export var height_curve : Curve
+
 @onready var stacks_container = $Stacks
 @onready var spawn_position : Vector2 = position
 
@@ -28,7 +30,8 @@ func update_stack_heights() -> void:
 	var percent_of_max_currency = c / float(max_c)
 	var max_stack_height = 128
 	for stack : CoinStack in stack_distribution.keys():
-		var scaled_max_height = max_stack_height * stack_distribution[stack]
+		var distribution_value = height_curve.sample(stack_distribution[stack])
+		var scaled_max_height = max_stack_height * distribution_value
 		var height = round(scaled_max_height * percent_of_max_currency)
 		stack.height = height
 

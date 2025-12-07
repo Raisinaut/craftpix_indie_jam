@@ -34,70 +34,81 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MenuLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Debug Menu"
 label_settings = ExtResource("2_eo4ue")
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+[node name="MenuVisibilityButton" type="CheckButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+focus_behavior_recursive = 1
+
+[node name="OptionContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_eo4ue")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/OptionContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_right = -2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/OptionContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/OptionContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/separation = 0
 
-[node name="GameSpeedLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="GameSpeedLabel" type="Label" parent="MarginContainer/VBoxContainer/OptionContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Speedup"
 label_settings = ExtResource("2_eo4ue")
 
-[node name="GameSpeedButton" type="CheckButton" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="GameSpeedButton" type="CheckButton" parent="MarginContainer/VBoxContainer/OptionContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_styles/focus = SubResource("StyleBoxEmpty_eo4ue")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/OptionContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 0
 
-[node name="RichLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="RichLabel" type="Label" parent="MarginContainer/VBoxContainer/OptionContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "Rich"
 label_settings = ExtResource("2_eo4ue")
 
-[node name="RichButton" type="CheckButton" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="RichButton" type="CheckButton" parent="MarginContainer/VBoxContainer/OptionContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_styles/focus = SubResource("StyleBoxEmpty_eo4ue")
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/OptionContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 0
 
-[node name="MeterVisibilityLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="MeterVisibilityLabel" type="Label" parent="MarginContainer/VBoxContainer/OptionContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 text = "Meters"
 label_settings = ExtResource("2_eo4ue")
 
-[node name="MeterVisibilityButton" type="CheckButton" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="MeterVisibilityButton" type="CheckButton" parent="MarginContainer/VBoxContainer/OptionContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10

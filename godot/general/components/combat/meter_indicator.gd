@@ -7,7 +7,7 @@ extends TextureProgressBar
 @onready var progress_cap : ColorRect = $ProgressCap
 
 var fade_tween : Tween = null
-var force_hide : bool = false
+var force_hide : bool = false : set = set_force_hide
 
 func _ready() -> void:
 	fade(0.0, 0.0)
@@ -16,6 +16,7 @@ func _ready() -> void:
 	if signal_node and update_signal:
 		signal_node.connect(update_signal, _update)
 	GameManager.hide_meters_changed.connect(_on_game_manager_hide_meters_changed)
+	force_hide = GameManager.hide_meters
 
 func _update(new_value) -> void:
 	visible = not force_hide
@@ -25,6 +26,10 @@ func _update(new_value) -> void:
 
 func set_progress(p : float) -> void:
 	value = clamp(p, 0.0, 1.0)
+
+func set_force_hide(state : bool) -> void:
+	force_hide = state
+	visible = not force_hide
 
 func _on_visibility_timer_timeout() -> void:
 	fade(0.0, 1.0)
@@ -44,4 +49,3 @@ func fade(alpha : float, duration) -> void:
 
 func _on_game_manager_hide_meters_changed(state : bool):
 	force_hide = state
-	visible = not force_hide

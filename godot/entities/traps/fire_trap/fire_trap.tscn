@@ -194,7 +194,6 @@ action = "FLIP"
 linked_area = NodePath("../InteractionArea")
 
 [node name="MeterIndicator" parent="." node_paths=PackedStringArray("signal_node") instance=ExtResource("10_mdnyf")]
-z_index = 10
 offset_left = -5.0
 offset_top = 5.0
 offset_right = 5.0

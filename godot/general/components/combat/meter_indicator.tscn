@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cxulvkcn24vvd" path="res://assets/ui/bar2.png" id="3_fh4r6"]
 
 [node name="MeterIndicator" type="TextureProgressBar"]
+z_index = 10
 offset_right = 16.0
 offset_bottom = 4.0
 max_value = 1.0
